@@ -15,6 +15,8 @@
     kdePackages.print-manager
     kdePackages.isoimagewriter
     freetube
+    fastfetch
+    figlet
     spotify
   ];
 }
