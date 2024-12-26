@@ -5,13 +5,22 @@
 { inputs, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.default
+  ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
+  environment.variables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+    PAPIRUS_FOLDER_COLOR = "frostblue3";
+  };
 
   nix.extraOptions = ''
     warn-dirty = false
@@ -25,7 +34,8 @@
     starship init fish | source
   '';
 
-  boot.initrd.luks.devices."luks-3235e4dd-286d-4123-bb8b-56442aeef650".device = "/dev/disk/by-uuid/3235e4dd-286d-4123-bb8b-56442aeef650";
+  boot.initrd.luks.devices."luks-3235e4dd-286d-4123-bb8b-56442aeef650".device =
+    "/dev/disk/by-uuid/3235e4dd-286d-4123-bb8b-56442aeef650";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
