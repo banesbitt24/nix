@@ -20,6 +20,7 @@
       zed-editor
       nixd
       nil
+      nvim
     ];
   };
 
