@@ -16,6 +16,7 @@
       modules = [
         ./modules/nixos/bootloader.nix
         ./modules/nixos/configuration.nix
+        ./modules/nixos/fonts.nix
         ./modules/nixos/keymap.nix
         ./modules/nixos/locale.nix
         ./modules/nixos/network.nix
@@ -27,7 +28,6 @@
         ./modules/nixos/time.nix
         ./modules/nixos/users.nix
         ./modules/nixos/virt.nix
-        ./modules/nixos/zsh.nix
         inputs.distro-grub-themes.nixosModules.x86_64-linux.default
         home-manager.nixosModules.default
         {

@@ -7,7 +7,6 @@
     description = "Brandon";
     extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     packages = with pkgs; [
-      kdePackages.kate
       brave
       papirus-nord
       git
