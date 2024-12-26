@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports =
@@ -15,6 +15,14 @@
 
   nix.extraOptions = ''
     warn-dirty = false
+  '';
+
+  # Optional: configure fish to use starship
+  environment.shells = [ pkgs.fish ];
+
+  # Ensure the fish config file includes the Starship initialization line
+  environment.etc."fish/config.fish".text = ''
+    starship init fish | source
   '';
 
   boot.initrd.luks.devices."luks-3235e4dd-286d-4123-bb8b-56442aeef650".device = "/dev/disk/by-uuid/3235e4dd-286d-4123-bb8b-56442aeef650";
