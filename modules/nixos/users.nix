@@ -18,8 +18,10 @@
       zed-editor
       nixd
       nil
+      nixfmt-rfc-style
       neovim
       kdenlive
+      obsidian
     ];
   };
 

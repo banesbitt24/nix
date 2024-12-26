@@ -12,6 +12,7 @@
     papirus-folders
     libreoffice-qt6-still
     kdePackages.print-manager
+    kdePackages.isoimagewriter
     freetube
     spotify
   ];
