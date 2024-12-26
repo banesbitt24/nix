@@ -9,8 +9,10 @@
       enable = true;
       plugins = [
         "git"
+        "rust"
+        "tailscale"
       ];
-      theme = "robbyrussell";
+      theme = "powerlevel10k";
     };
     shellAliases = {
       ll = "ls -l";

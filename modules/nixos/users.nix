@@ -20,7 +20,10 @@
       zed-editor
       nixd
       nil
-      nvim
+      neovim
+      zsh-autosuggestions
+      zsh-syntax-highlighting
+      zsh-powerlevel10k
     ];
   };
 
