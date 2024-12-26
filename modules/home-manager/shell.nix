@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   programs.zsh = {
@@ -18,6 +18,7 @@
       ll = "ls -l";
       gs = "git status";
       vim = "nvim";
+      ts = "tailscale";
     };
   };
 }

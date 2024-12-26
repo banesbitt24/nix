@@ -24,6 +24,7 @@
       zsh-autosuggestions
       zsh-syntax-highlighting
       zsh-powerlevel10k
+      kdenlive
     ];
   };
 
