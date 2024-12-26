@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   networking.hostName = "greywolf"; # Define your hostname.
