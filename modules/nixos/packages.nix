@@ -5,8 +5,9 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget
+    fish
+    starship
     tailscale
-    oh-my-zsh
     nextcloud-client
     papirus-folders
     libreoffice-qt6-still

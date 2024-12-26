@@ -11,7 +11,6 @@
       brave
       papirus-nord
       git
-      zsh
       jetbrains-mono
       enpass
       gimp-with-plugins
@@ -21,9 +20,6 @@
       nixd
       nil
       neovim
-      zsh-autosuggestions
-      zsh-syntax-highlighting
-      zsh-powerlevel10k
       kdenlive
     ];
   };
