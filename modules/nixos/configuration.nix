@@ -19,7 +19,6 @@
   environment.variables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
-    PAPIRUS_FOLDER_COLOR = "frostblue3";
   };
 
   nix.extraOptions = ''
@@ -29,13 +28,16 @@
   # Optional: configure fish to use starship
   environment.shells = [ pkgs.fish ];
 
+  programs.fish.enable = true;
+  users.users.brandon.shell = pkgs.fish;
+
   # Ensure the fish config file includes the Starship initialization line
   environment.etc."fish/config.fish".text = ''
     starship init fish | source
   '';
 
-  boot.initrd.luks.devices."luks-3235e4dd-286d-4123-bb8b-56442aeef650".device =
-    "/dev/disk/by-uuid/3235e4dd-286d-4123-bb8b-56442aeef650";
+  #boot.initrd.luks.devices."luks-3235e4dd-286d-4123-bb8b-56442aeef650".device =
+  #  "/dev/disk/by-uuid/3235e4dd-286d-4123-bb8b-56442aeef650";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
