@@ -18,5 +18,6 @@
     fastfetch
     figlet
     spotify
+    haruna
   ];
 }
