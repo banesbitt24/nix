@@ -22,6 +22,9 @@
       neovim
       kdenlive
       obsidian
+      proton-pass
+      protonvpn-gui
+      protonmail-desktop
     ];
   };
 
