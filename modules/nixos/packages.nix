@@ -19,5 +19,7 @@
     figlet
     spotify
     haruna
+    icloudpd
+    ktorrent
   ];
 }
