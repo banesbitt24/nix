@@ -5,7 +5,11 @@
   users.users.brandon = {
     isNormalUser = true;
     description = "Brandon";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "libvirtd"
+    ];
     packages = with pkgs; [
       brave
       papirus-nord
@@ -22,16 +26,16 @@
       neovim
       kdenlive
       obsidian
-      proton-pass
-      protonvpn-gui
-      protonmail-desktop
     ];
   };
 
   users.extraUsers.danielle = {
     isNormalUser = true;
     description = "Danielle";
-    extraGroups = [ "networkmanager" "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       google-chrome
     ];
