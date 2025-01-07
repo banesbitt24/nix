@@ -15,7 +15,6 @@
       papirus-nord
       git
       jetbrains-mono
-      enpass
       gimp-with-plugins
       kdePackages.krohnkite
       nerdfonts
@@ -26,6 +25,9 @@
       neovim
       kdenlive
       obsidian
+      proton-pass
+      protonvpn-gui
+      protonmail-desktop
     ];
   };
 

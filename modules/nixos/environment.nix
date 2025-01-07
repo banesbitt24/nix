@@ -4,7 +4,7 @@
 
   environment.variables = {
     EDITOR = "nvim";
-    VISUAL = "nvim";
+    VISUAL = "zed";
   };
 
 }

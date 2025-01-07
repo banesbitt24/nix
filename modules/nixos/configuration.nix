@@ -16,11 +16,6 @@
     "flakes"
   ];
 
-  environment.variables = {
-    EDITOR = "nvim";
-    VISUAL = "nvim";
-  };
-
   nix.extraOptions = ''
     warn-dirty = false
   '';
