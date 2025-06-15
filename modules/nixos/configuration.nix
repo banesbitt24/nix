@@ -23,7 +23,13 @@
   # Optional: configure fish to use starship
   environment.shells = [ pkgs.fish ];
 
-  programs.fish.enable = true;
+  programs.fish = {
+    enable = true;
+    shellInit = ''
+      set -Ux ZED_ALLOW_EMULATED_GPU  1
+    '';
+  };
+
   users.users.brandon.shell = pkgs.fish;
 
   # Ensure the fish config file includes the Starship initialization line
@@ -44,7 +50,6 @@
     extraSpecialArgs = { inherit inputs; };
     users = {
       "brandon" = import ./brandon.nix;
-      "danielle" = import ./danielle.nix;
     };
   };
 

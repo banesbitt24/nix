@@ -75,6 +75,9 @@
   #
   home.sessionVariables = {
     # EDITOR = "emacs";
+    EDITOR = "nvim";
+    VISUAL = "zed";
+    ZED_ALLOW_EMULATED_GPU = 1;
   };
 
   # Let Home Manager install and manage itself.

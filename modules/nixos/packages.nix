@@ -8,18 +8,9 @@
     fish
     starship
     tailscale
-    nextcloud-client
     papirus-folders
     papirus-icon-theme
-    libreoffice-qt6-still
-    kdePackages.print-manager
-    kdePackages.isoimagewriter
-    freetube
     fastfetch
     figlet
-    spotify
-    haruna
-    icloudpd
-    ktorrent
   ];
 }

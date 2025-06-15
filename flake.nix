@@ -2,9 +2,9 @@
   description = "Nixos config flake";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-24.11";
+    nixpkgs.url = "nixpkgs/nixos-25.05";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
@@ -18,7 +18,7 @@
       ...
     }@inputs:
     {
-      nixosConfigurations.greywolf = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.nixos-vm = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
           ./modules/nixos/bootloader.nix

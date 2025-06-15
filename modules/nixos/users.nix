@@ -11,35 +11,17 @@
       "libvirtd"
     ];
     packages = with pkgs; [
-      brave
+      #ungoogled-chromium
+      firefox
       papirus-nord
       git
       jetbrains-mono
-      gimp-with-plugins
       kdePackages.krohnkite
-      nerdfonts
       zed-editor
       nixd
       nil
       nixfmt-rfc-style
       neovim
-      kdenlive
-      obsidian
-      proton-pass
-      protonvpn-gui
-      protonmail-desktop
-    ];
-  };
-
-  users.extraUsers.danielle = {
-    isNormalUser = true;
-    description = "Danielle";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      google-chrome
     ];
   };
 }
