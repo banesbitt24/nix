@@ -10,6 +10,7 @@
     ../home-manager/git.nix
     ../home-manager/shell.nix
     ../home-manager/gtk.nix
+    ../home-manager/zed.nix
   ];
 
   # This value determines the Home Manager release that your configuration is

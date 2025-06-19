@@ -17,7 +17,6 @@
       git
       jetbrains-mono
       kdePackages.krohnkite
-      zed-editor
       nixd
       nil
       nixfmt-rfc-style
