@@ -7,10 +7,16 @@
     wget
     fish
     starship
-    tailscale
     papirus-folders
+    papirus-nord
     papirus-icon-theme
-    fastfetch
+    tailscale
     figlet
+    helix
+    zed-editor
+    nixd
+    nil
+    nixfmt-rfc-style
+    kdePackages.krohnkite
   ];
 }

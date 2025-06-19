@@ -75,7 +75,7 @@
   #
   home.sessionVariables = {
     # EDITOR = "emacs";
-    EDITOR = "nvim";
+    EDITOR = "hx";
     VISUAL = "zed";
     ZED_ALLOW_EMULATED_GPU = 1;
   };
