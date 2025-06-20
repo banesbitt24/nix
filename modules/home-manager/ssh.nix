@@ -47,6 +47,13 @@
         identitiesOnly = true;
       };
       
+      "codeberg.org" = {
+        hostname = "codeberg.org";
+        user = "git";
+        identityFile = "~/.ssh/id_ed25519";
+        identitiesOnly = true;
+      };
+      
       # Example for personal servers
       # "myserver" = {
       #   hostname = "example.com";
