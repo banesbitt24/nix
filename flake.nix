@@ -7,6 +7,11 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
     distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
   };
 
@@ -40,6 +45,9 @@
           home-manager.nixosModules.default
           {
             home-manager.backupFileExtension = "hmb";
+            home-manager.sharedModules = [
+              inputs.plasma-manager.homeManagerModules.plasma-manager
+            ];
           }
         ];
       };

@@ -11,6 +11,8 @@
     ../home-manager/shell.nix
     ../home-manager/gtk.nix
     ../home-manager/zed.nix
+    ../home-manager/kde.nix
+    ../home-manager/ssh.nix
   ];
 
   # This value determines the Home Manager release that your configuration is

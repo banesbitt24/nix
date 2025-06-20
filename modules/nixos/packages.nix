@@ -17,6 +17,5 @@
     nixd
     nil
     nixfmt-rfc-style
-    kdePackages.krohnkite
   ];
 }
