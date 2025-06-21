@@ -17,5 +17,6 @@
     nixd
     nil
     nixfmt-rfc-style
+    ungoogled-chromium
   ];
 }
