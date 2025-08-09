@@ -155,7 +155,7 @@
         "custom/weather" = {
           format = "{}";
           tooltip = true;
-          # exec = "~/.config/scripts/weather.sh";  # You'll need to create this script
+          exec = "wttrbar --fahrenheit --mph --location Highlands_Ranch --custom-indicator '{ICON} {temp_F}° {weatherDesc}'"; 
           exec = "echo '☀️ 22°C'";  # Placeholder
           interval = 900;
           return-type = "json";
