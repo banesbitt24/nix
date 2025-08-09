@@ -184,7 +184,6 @@
         spacing = 0;
 
         modules-left = [
-          "custom/updates"
           "cpu"
           "memory"
           "disk"
@@ -431,3 +430,4 @@
       }
     '';
   };
+}
