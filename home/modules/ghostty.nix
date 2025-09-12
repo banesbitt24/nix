@@ -30,6 +30,9 @@
       shell-integration = "fish";
       shell-integration-features = "cursor,sudo,title";
       
+      # Default shell
+      command = "${pkgs.fish}/bin/fish";
+      
       # Colors (Nord theme compatible with Starship)
       foreground = "d8dee9";
       background = "2e3440";

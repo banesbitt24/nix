@@ -9,6 +9,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
   outputs = {
@@ -16,6 +21,7 @@
     nixpkgs,
     nixos-hardware,
     home-manager,
+    plasma-manager,
     ...
   }@inputs:
   {
@@ -30,6 +36,7 @@
           home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "hmb";
           home-manager.users.brandon = import ./home/home.nix;
+          home-manager.extraSpecialArgs = { inherit inputs; };
         }
       ];
     };

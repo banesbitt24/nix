@@ -3,58 +3,7 @@
 {
   programs.k9s = {
     enable = true;
-    
-    # Hotkeys configuration
-    hotkey = {
-      # Custom hotkeys for better workflow
-      hotKey = {
-        shift-0 = {
-          shortCut = "Shift-0";
-          description = "Viewing pods";
-          command = "pods";
-        };
-        shift-1 = {
-          shortCut = "Shift-1";
-          description = "Viewing deployments";
-          command = "deployments";
-        };
-        shift-2 = {
-          shortCut = "Shift-2";
-          description = "Viewing services";
-          command = "services";
-        };
-        shift-3 = {
-          shortCut = "Shift-3";
-          description = "Viewing configmaps";
-          command = "configmaps";
-        };
-        shift-4 = {
-          shortCut = "Shift-4";
-          description = "Viewing secrets";
-          command = "secrets";
-        };
-        shift-5 = {
-          shortCut = "Shift-5";
-          description = "Viewing nodes";
-          command = "nodes";
-        };
-      };
-    };
-    
-    # Aliases for common resources
-    aliases = {
-      alias = {
-        dp = "v1/deployments";
-        sec = "v1/secrets";
-        jo = "batch/v1/jobs";
-        cr = "rbac.authorization.k8s.io/v1/clusterroles";
-        crb = "rbac.authorization.k8s.io/v1/clusterrolebindings";
-        ro = "rbac.authorization.k8s.io/v1/roles";
-        rb = "rbac.authorization.k8s.io/v1/rolebindings";
-        np = "networking.k8s.io/v1/networkpolicies";
-      };
-    };
-    
+      
     # Skins (themes) configuration
     skins = {
       # Nord theme configuration

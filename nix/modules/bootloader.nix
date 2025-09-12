@@ -7,11 +7,11 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.devices = [ "nodev" ];
-  #boot.loader.grub.configurationLimit = 5;
+  boot.loader.grub.configurationLimit = 5;
 
   distro-grub-themes = {
     enable = true;
-    theme = "nixos";
+    theme = "framework13";
   };
 
 }

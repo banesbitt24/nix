@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -7,22 +7,18 @@
   home.homeDirectory = "/home/brandon";
 
   imports = [
-    ./modules/bibata-cursor.nix
+    inputs.plasma-manager.homeManagerModules.plasma-manager
     ./modules/brave.nix
-    ./modules/hypridle.nix
-    ./modules/hyprland.nix
-    ./modules/hyprpanel.nix
-    ./modules/hyprsunset.nix
-    ./modules/kitty.nix
-    ./modules/walker.nix
-    ./modules/zed.nix
+    ./modules/fish.nix
+    ./modules/ghostty.nix
+    ./modules/helix.nix
+    ./modules/k9s.nix
+    ./modules/starship.nix
     ./modules/zellij.nix
   ];
 
   home.sessionVariables = {
-    EDITOR = "vim";
-    NIXOS_OZONE_WL = "1";
-    GTK_USE_PORTAL = "1";
+    #EDITOR = "vim";
   };
 
   news.display = "silent";
@@ -72,6 +68,11 @@
   #
   #  /etc/profiles/per-user/brandon/etc/profile.d/hm-session-vars.sh
   #
+
+  # Enable plasma-manager
+  programs.plasma = {
+    enable = true;
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

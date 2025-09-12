@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -13,8 +13,8 @@
     ./modules/keymap.nix
     ./modules/locale.nix
     ./modules/network.nix
+    ./modules/plasma.nix
     ./modules/print.nix
-    ./modules/regreet.nix
     ./modules/services.nix
     ./modules/sound.nix
     ./modules/time.nix
@@ -35,22 +35,13 @@
 
   environment.systemPackages = with pkgs; [
     vim
-    acpi
-    upower
+    fprintd
     wget
     git
     curl
     tailscale
-    power-profiles-daemon
-    walker
-    iwmenu
-    bzmenu
-    xfce.thunar
-    xfce.thunar-volman
-    xfce.thunar-archive-plugin
-    xfce.thunar-media-tags-plugin
-    kdePackages.polkit-kde-agent-1
     figlet # ASCII art tool
+    haruna
     proton-pass
     protonmail-desktop
     obsidian # Note-taking app
@@ -61,21 +52,15 @@
     kubernetes-helm
     libreoffice-qt6
     gimp3-with-plugins
+    nixd
+    nil
+    nixfmt-rfc-style
+    papirus-nord
+    kdePackages.kdenlive
+    kdePackages.ktorrent
+    kdePackages.kcalc
+    claude-code
   ];
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-hyprland
-      xdg-desktop-portal-gtk
-    ];
-    config.common.default = [
-      "hyprland"
-      "gtk"
-    ];
-  };
-
-  programs.hyprland.enable = true;
 
   system.stateVersion = "25.05"; # Did you read the comment?
 
