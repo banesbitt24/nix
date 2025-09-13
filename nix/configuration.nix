@@ -59,6 +59,7 @@
     kdePackages.kdenlive
     kdePackages.ktorrent
     kdePackages.kcalc
+    kdePackages.isoimagewriter
     claude-code
   ];
 
