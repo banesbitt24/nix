@@ -13,11 +13,11 @@
     ./modules/hypridle.nix
     ./modules/hyprland.nix
     ./modules/hyprsunset.nix
-    ./modules/kitty.nix
     ./modules/fish.nix
     ./modules/ghostty.nix
     ./modules/helix.nix
     ./modules/k9s.nix
+    ./modules/mako.nix
     ./modules/starship.nix
     ./modules/zellij.nix
     ./modules/waybar.nix

@@ -7,12 +7,14 @@
   home.file = {
     ".config/walker/config.json" = {
       text = builtins.toJSON {
+        theme = "nord";
         placeholder = "";
         fullscreen = false;
-        width = 680;
-        height = 560;
+        width = 600;
+        height = 400;
         position = "center";
-
+        force_keyboard_focus = true;
+        
         search = {
           delay = 50;
           placeholder = "";
@@ -36,9 +38,9 @@
         };
 
         list = {
-          height = 480;
+          height = 320;
           always_show = true;
-          hide_description = false;
+          hide_description = true;
         };
 
         modules = [
@@ -117,111 +119,144 @@
       };
     };
 
-    ".config/walker/style.css" = {
+    # Custom nord theme
+    ".config/walker/themes/nord.css" = {
       text = ''
-        /* Walker Nord Theme - High Contrast */
+        /* Walker Nord Theme - Waybar Style */
+        @define-color background #2e3440;
+        @define-color foreground #eceff4;
+
+        * {
+          font-family: "JetBrainsMono Nerd Font", monospace !important;
+        }
 
         #window {
-          background: #2e3440;  /* Solid Nord0 background */
-          border: 2px solid #5e81ac;  /* Nord10 border for definition */
-          border-radius: 16px;
-          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);  /* Stronger shadow */
+          color: @foreground;
+        }
+
+        #box {
+          border-radius: 8px;
+          background: @background;
+          padding: 8px;
+          border: 3px solid #5e81ac;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+        }
+
+        #search {
+          box-shadow: none;
+          background: @background;
+          padding: 6px 8px;
+          border: none;
+          border-radius: 0;
         }
 
         #input {
-          background: #3b4252;  /* Solid Nord1 background */
-          color: #eceff4;  /* Nord6 text */
-          border: 1px solid #434c5e;  /* Nord2 border */
-          border-radius: 12px;
-          padding: 20px 24px;
-          font-size: 18px;
-          font-family: "CaskaydiaMono Nerd Font", "FiraCode Nerd Font", monospace;
+          background: none;
+          color: @foreground;
+          border: none;
+          border-radius: 0;
+          font-size: 12px;
+          font-family: "JetBrainsMono Nerd Font", monospace;
+          font-weight: normal;
         }
 
         #input:focus {
-          border-color: #81a1c1;  /* Nord9 focus border */
-          box-shadow: 0 0 0 2px rgba(129, 161, 193, 0.5);
+          border: none;
+          box-shadow: none;
           outline: none;
         }
 
-        #input::placeholder {
-          color: #4c566a;  /* Nord3 */
+        #input placeholder {
+          color: #4c566a;
+          opacity: 0.7;
         }
 
         #list {
           background: transparent;
-          padding: 0 16px 16px 16px;
+          padding: 0;
         }
 
-        .item {
+        child {
           background: transparent;
-          color: #eceff4;  /* Nord6 - bright white text */
-          border-radius: 10px;
-          padding: 14px 20px;
-          margin: 2px 0;
-          font-weight: 500;  /* Slightly bolder text */
-          transition: all 0.15s ease;
+          color: @foreground;
+          border-radius: 0;
+          padding: 2px 8px;
+          margin: 0;
+          font-weight: normal;
+          font-family: "JetBrainsMono Nerd Font", monospace;
+          font-size: 12px;
+          transition: all 0.1s ease;
         }
 
-        .item:hover {
-          background: #434c5e;  /* Solid Nord2 hover */
+        child:hover {
+          background: rgba(236, 239, 244, 0.05);
         }
 
-        .item:selected {
-          background: #5e81ac;  /* Solid Nord10 selection */
-          color: #eceff4;  /* Ensure white text on selection */
+        child:selected {
+          background: rgba(129, 161, 193, 0.15);
+          color: #81a1c1;
         }
 
-        .item .icon {
-          margin-right: 16px;
-          min-width: 32px;
-          min-height: 32px;
-          opacity: 1;  /* Full opacity for icons */
+        #icon {
+          margin-right: 8px;
+          min-width: 16px;
+          min-height: 16px;
+          opacity: 0.8;
         }
 
-        .item .title {
-          color: #eceff4;  /* Bright white for titles */
+        #label {
+          color: @foreground;
+          font-weight: 500;
+          font-size: 12px;
+          font-family: "JetBrainsMono Nerd Font", monospace;
+        }
+
+        child:selected #label {
+          color: #eceff4;
           font-weight: 600;
-          font-size: 15px;
         }
 
-        .item .subtitle {
-          color: #d8dee9;  /* Nord4 for subtitles */
-          opacity: 1;  /* Remove transparency */
-          font-size: 13px;
-          margin-top: 2px;
+        /* AGGRESSIVELY HIDE ALL DESCRIPTION/SUBTITLE ELEMENTS */
+        #sub,
+        .sub,
+        .subtitle,
+        .description,
+        child #sub,
+        child .sub,
+        child .subtitle,
+        child .description {
+          display: none !important;
+          opacity: 0 !important;
+          height: 0 !important;
+          width: 0 !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          font-size: 0 !important;
+          visibility: hidden !important;
+          position: absolute !important;
+          left: -9999px !important;
+          overflow: hidden !important;
         }
 
-        /* Module-specific colors for selected items */
-        .applications .item:selected .title {
-          color: #88c0d0;  /* Nord8 - light blue */
-        }
-
-        .runner .item:selected .title {
-          color: #a3be8c;  /* Nord14 - green */
-        }
-
-        .calc .item:selected .title {
-          color: #ebcb8b;  /* Nord13 - yellow */
-        }
-
-        .websearch .item:selected .title {
-          color: #d08770;  /* Nord12 - orange */
+        /* Hide activation labels */
+        #activationlabel {
+          display: none !important;
         }
 
         /* Scrollbar */
         scrollbar {
           background: transparent;
-          width: 6px;
+          border: none;
         }
 
         scrollbar slider {
-          background: #4c566a;  /* Nord3 */
-          border-radius: 3px;
+          background: #4c566a;
+          border-radius: 2px;
+          border: none;
         }
 
         scrollbar slider:hover {
-          background: #5e81ac;  /* Nord10 */
+          background: #81a1c1;
         }
       '';
     };
@@ -245,4 +280,3 @@
     WALKER_TERMINAL = "${pkgs.kitty}/bin/kitty";
   };
 }
-

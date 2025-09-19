@@ -29,7 +29,7 @@
 
       # Actions
       bind = $mainMod, Q, killactive
-      bind = $mainMod, RETURN, exec, kitty
+      bind = $mainMod, RETURN, exec, ghostty
       bind = $mainMod, R, exec, ${pkgs.walker}/bin/walker
       bind = $mainMod, M, exit # Exit Hyprland
 
