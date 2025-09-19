@@ -7,14 +7,21 @@
   home.homeDirectory = "/home/brandon";
 
   imports = [
-    inputs.plasma-manager.homeManagerModules.plasma-manager
+    inputs.plasma-manager.homeModules.plasma-manager
+    ./modules/bibata-cursor.nix
     ./modules/brave.nix
+    ./modules/hypridle.nix
+    ./modules/hyprland.nix
+    ./modules/hyprsunset.nix
+    ./modules/kitty.nix
     ./modules/fish.nix
     ./modules/ghostty.nix
     ./modules/helix.nix
     ./modules/k9s.nix
     ./modules/starship.nix
     ./modules/zellij.nix
+    ./modules/waybar.nix
+    ./modules/walker.nix
   ];
 
   home.sessionVariables = {
