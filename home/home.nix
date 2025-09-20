@@ -17,6 +17,8 @@
     ./modules/ghostty.nix
     ./modules/helix.nix
     ./modules/k9s.nix
+    ./modules/lazydocker.nix
+    ./modules/lazygit.nix
     ./modules/mako.nix
     ./modules/rofi.nix
     ./modules/starship.nix

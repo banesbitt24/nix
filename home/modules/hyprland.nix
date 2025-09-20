@@ -22,7 +22,7 @@
       exec-once = walker --gapplication-service
       exec-once = waybar
       exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-      exec-once = ${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1
+      exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
 
       # Keybindings
 
@@ -34,7 +34,15 @@
       bind = $mainMod, RETURN, exec, ghostty
       bind = $mainMod, R, exec, ${pkgs.rofi}/bin/rofi -show drun
       bind = $mainMod shift, P, exec, ${pkgs.rofi}/bin/rofi -show power-menu -modi power-menu:rofi-power-menu
+      bind = $mainMod, E, exec, thunar # Open file manager
       bind = $mainMod, M, exit # Exit Hyprland
+
+      # Screenshots and Recording
+      bind = , Print, exec, grim -g "$(slurp)" - | wl-copy # Screenshot area to clipboard
+      bind = SHIFT, Print, exec, grim ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png # Full screenshot to file
+      bind = CTRL, Print, exec, grim -g "$(slurp)" ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png # Area screenshot to file
+      bind = ALT, Print, exec, ${pkgs.rofi}/bin/rofi -show screenshot -modi screenshot:rofi-screenshot # Rofi screenshot menu
+      bind = $mainMod, Print, exec, pkill wf-recorder || wf-recorder -g "$(slurp)" -f ~/Videos/recording-$(date +%Y%m%d-%H%M%S).mp4 # Toggle area recording
 
       # Move focus with mainMod + arrow keys
       bind = $mainMod, left, movefocus, l # Move focus left
