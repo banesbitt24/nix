@@ -15,7 +15,7 @@
       border-radius = 0;
       
       # Font configuration matching waybar/walker
-      font = "JetBrainsMono Nerd Font 12";
+      font = "JetBrainsMono Nerd Font 10";
       
       # Nord color scheme
       background-color = "#2e3440";

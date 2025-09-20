@@ -13,7 +13,7 @@
     ./modules/keymap.nix
     ./modules/locale.nix
     ./modules/network.nix
-    ./modules/plasma.nix
+    ./modules/greetd.nix
     ./modules/print.nix
     ./modules/services.nix
     ./modules/sound.nix
@@ -61,6 +61,8 @@
     rofi-power-menu
     rofi-screenshot
     waypaper
+    hyprcursor
+    adi1090x-plymouth-themes
   ];
 
   system.stateVersion = "25.05"; # Did you read the comment?

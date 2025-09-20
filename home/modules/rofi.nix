@@ -57,7 +57,7 @@
 
           background-color: transparent;
           text-color: @nord6;
-          font: "JetBrainsMono Nerd Font 12";
+          font: "JetBrainsMono Nerd Font 10";
       }
 
       window {

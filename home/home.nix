@@ -7,7 +7,6 @@
   home.homeDirectory = "/home/brandon";
 
   imports = [
-    inputs.plasma-manager.homeModules.plasma-manager
     ./modules/bibata-cursor.nix
     ./modules/brave.nix
     ./modules/hypridle.nix
@@ -77,10 +76,6 @@
   #  /etc/profiles/per-user/brandon/etc/profile.d/hm-session-vars.sh
   #
 
-  # Enable plasma-manager
-  programs.plasma = {
-    enable = true;
-  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

@@ -81,7 +81,7 @@
           tooltip-format-disconnected = "Disconnected";
           interval = 3;
           spacing = 1;
-          on-click = "${pkgs.ghostty}/bin/ghostty -e nmtui";
+          on-click = "rofi-network-manager";
         };
 
         battery = {
@@ -108,7 +108,7 @@
           format-disabled = "󰂲";
           format-connected = "";
           tooltip-format = "Devices connected: {num_connections}";
-          on-click = "${pkgs.blueman}/bin/blueman-manager";
+          on-click = "rofi-bluetooth";
         };
 
         pulseaudio = {

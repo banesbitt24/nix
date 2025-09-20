@@ -11,6 +11,8 @@
       # Portal environment
       env = XDG_CURRENT_DESKTOP,Hyprland
       env = XDG_SESSION_TYPE,wayland
+      env = HYPRCURSOR_THEME,Bibata-Modern-Ice
+      env = HYPRCURSOR_SIZE,24
 
       # Monitor Config
       monitor = eDP-1,2256sx1504,auto,1.175

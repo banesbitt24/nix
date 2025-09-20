@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   # Use the Grub boot loader
@@ -8,6 +8,17 @@
   boot.loader.grub.efiSupport = false; 
   boot.loader.grub.devices = [ "nodev" ];
   boot.loader.grub.configurationLimit = 5;
+
+  boot.plymouth = {
+    enable = true;
+    theme = "rings";
+    themePackages = with pkgs; [
+      # Install only the specified theme(s)
+      (adi1090x-plymouth-themes.override {
+        selected_themes = [ "rings" ];
+      })
+    ];
+  };
 
   distro-grub-themes = {
     enable = true;
