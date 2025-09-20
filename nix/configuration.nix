@@ -72,10 +72,15 @@
     xfce.thunar-volman        # Lightweight GUI file manager
     xfce.thunar-archive-plugin
     xarchiver
+    gvfs          # Virtual filesystem support for trash, mounts, etc
     yazi          # Modern TUI file manager
     lazydocker    # Docker TUI management
     lazygit       # Git TUI interface
+    cliphist      # Clipboard manager for Wayland
   ];
+
+  # Enable gvfs for virtual filesystem support (trash, automounting, etc)
+  services.gvfs.enable = true;
 
   system.stateVersion = "25.05"; # Did you read the comment?
 

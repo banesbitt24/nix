@@ -9,6 +9,7 @@
   imports = [
     ./modules/bibata-cursor.nix
     ./modules/brave.nix
+    ./modules/btop.nix
     ./modules/gtk.nix
     ./modules/hypridle.nix
     ./modules/hyprland.nix
@@ -29,6 +30,38 @@
 
   home.sessionVariables = {
     #EDITOR = "vim";
+  };
+
+  # Clipboard manager configuration
+  home.file.".local/bin/rofi-clipboard" = {
+    text = ''
+      #!/usr/bin/env bash
+      
+      # Show clipboard history with rofi and copy selection
+      selection=$(cliphist list | rofi -dmenu -i -p " Clipboard" -theme ~/.config/rofi/nord.rasi)
+      
+      if [ -n "$selection" ]; then
+        # Decode and copy the selected item
+        echo "$selection" | cliphist decode | wl-copy
+      fi
+    '';
+    executable = true;
+  };
+
+  # Start cliphist daemon on login
+  systemd.user.services.cliphist = {
+    Unit = {
+      Description = "Clipboard history daemon";
+      After = [ "graphical-session.target" ];
+    };
+    Service = {
+      Type = "simple";
+      ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${pkgs.cliphist}/bin/cliphist store";
+      Restart = "on-failure";
+    };
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
   };
 
   news.display = "silent";

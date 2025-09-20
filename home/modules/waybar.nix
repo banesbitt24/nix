@@ -5,17 +5,16 @@
   # Install Waybar and dependencies
   home.packages = with pkgs; [
     waybar
-    pavucontrol    # For pulseaudio module clicks
-    blueman        # For bluetooth module clicks
-    btop           # System monitor for CPU module
-    ghostty        # Terminal for various on-click actions
-    wttrbar        # Weather bar for custom weather module
+    pavucontrol # For pulseaudio module clicks
+    blueman # For bluetooth module clicks
+    ghostty # Terminal for various on-click actions
+    wttrbar # Weather bar for custom weather module
   ];
 
   # Configure Waybar with Omarchy's clean setup
   programs.waybar = {
     enable = true;
-    
+
     # Omarchy's configuration
     settings = [
       {
@@ -49,12 +48,12 @@
           format = "{name}";
           all-outputs = true;
           persistent-workspaces = {
-            "1" = [];
-            "2" = [];
-            "3" = [];
-            "4" = [];
-            "5" = [];
-            "6" = [];
+            "1" = [ ];
+            "2" = [ ];
+            "3" = [ ];
+            "4" = [ ];
+            "5" = [ ];
+            "6" = [ ];
           };
         };
 
@@ -71,7 +70,13 @@
         };
 
         network = {
-          format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
+          format-icons = [
+            "󰤯"
+            "󰤟"
+            "󰤢"
+            "󰤥"
+            "󰤨"
+          ];
           format = "{icon}";
           format-wifi = "{icon}";
           format-ethernet = "󰀂";
@@ -90,8 +95,30 @@
           format-charging = "{icon}";
           format-plugged = "";
           format-icons = {
-            charging = ["󰢜" "󰂆" "󰂇" "󰂈" "󰢝" "󰂉" "󰢞" "󰂊" "󰂋" "󰂅"];
-            default = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+            charging = [
+              "󰢜"
+              "󰂆"
+              "󰂇"
+              "󰂈"
+              "󰢝"
+              "󰂉"
+              "󰢞"
+              "󰂊"
+              "󰂋"
+              "󰂅"
+            ];
+            default = [
+              "󰁺"
+              "󰁻"
+              "󰁼"
+              "󰁽"
+              "󰁾"
+              "󰁿"
+              "󰂀"
+              "󰂁"
+              "󰂂"
+              "󰁹"
+            ];
           };
           format-full = "󰂅";
           tooltip-format-discharging = "{power:>1.0f}W↓ {capacity}%";
@@ -113,12 +140,19 @@
 
         pulseaudio = {
           format = "{icon}";
+          format-muted = " muted";
           on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
-          tooltip-format = "Playing at {volume}%";
+          tooltip-format = "Volume: {volume}%";
           scroll-step = 5;
-          format-muted = "";
           format-icons = {
-            default = ["" "" ""];
+            default = [
+              "󰕿"
+              "󰖀"
+              "󰕾"
+            ];
+          };
+          states = {
+            muted = 0;
           };
         };
 
@@ -128,7 +162,10 @@
             transition-duration = 600;
             children-class = "tray-group-item";
           };
-          modules = ["custom/expand-icon" "tray"];
+          modules = [
+            "custom/expand-icon"
+            "tray"
+          ];
         };
 
         "custom/expand-icon" = {
@@ -144,7 +181,7 @@
         "custom/weather" = {
           format = "{}";
           tooltip = true;
-          exec = "wttrbar --fahrenheit --mph --location Highlands_Ranch --custom-indicator '{ICON} {temp_F}°'"; 
+          exec = "wttrbar --fahrenheit --mph --location Highlands_Ranch --custom-indicator '{ICON} {temp_F}°'";
           interval = 900;
           return-type = "json";
         };
@@ -233,4 +270,3 @@
     '';
   };
 }
-

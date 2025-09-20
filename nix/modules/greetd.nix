@@ -1,5 +1,5 @@
 # greetd.nix
-{ pkgs, lib, ... }:
+{ ... }:
 
 {
   services.greetd = {
