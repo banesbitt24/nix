@@ -41,7 +41,6 @@
     curl
     tailscale
     figlet # ASCII art tool
-    haruna
     proton-pass
     protonmail-desktop
     obsidian # Note-taking app
@@ -56,11 +55,12 @@
     nil
     nixfmt-rfc-style
     papirus-nord
-    kdePackages.kdenlive
-    kdePackages.ktorrent
-    kdePackages.kcalc
-    kdePackages.isoimagewriter
     claude-code
+    rofi-bluetooth
+    rofi-network-manager
+    rofi-power-menu
+    rofi-screenshot
+    waypaper
   ];
 
   system.stateVersion = "25.05"; # Did you read the comment?

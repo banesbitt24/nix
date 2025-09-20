@@ -30,7 +30,8 @@
       # Actions
       bind = $mainMod, Q, killactive
       bind = $mainMod, RETURN, exec, ghostty
-      bind = $mainMod, R, exec, ${pkgs.walker}/bin/walker
+      bind = $mainMod, R, exec, ${pkgs.rofi}/bin/rofi -show drun
+      bind = $mainMod shift, P, exec, ${pkgs.rofi}/bin/rofi -show power-menu -modi power-menu:rofi-power-menu
       bind = $mainMod, M, exit # Exit Hyprland
 
       # Move focus with mainMod + arrow keys
