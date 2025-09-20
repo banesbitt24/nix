@@ -9,6 +9,7 @@
   imports = [
     ./modules/bibata-cursor.nix
     ./modules/brave.nix
+    ./modules/gtk.nix
     ./modules/hypridle.nix
     ./modules/hyprland.nix
     ./modules/hyprpaper.nix

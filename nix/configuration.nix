@@ -55,6 +55,7 @@
     nil
     nixfmt-rfc-style
     papirus-nord
+    nordic
     claude-code
     rofi-bluetooth
     rofi-network-manager
@@ -70,6 +71,7 @@
     xfce.thunar
     xfce.thunar-volman        # Lightweight GUI file manager
     xfce.thunar-archive-plugin
+    xarchiver
     yazi          # Modern TUI file manager
     lazydocker    # Docker TUI management
     lazygit       # Git TUI interface

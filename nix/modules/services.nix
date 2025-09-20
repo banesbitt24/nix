@@ -12,6 +12,9 @@
   # Enable GNOME keyring for credential storage
   services.gnome.gnome-keyring.enable = true;
   
+  # Enable Docker service
+  virtualisation.docker.enable = true;
+  
   # XDG portals for Hyprland
   xdg.portal = {
     enable = true;
