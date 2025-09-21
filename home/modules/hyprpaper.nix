@@ -4,7 +4,7 @@
 {
   services.hyprpaper = {
     enable = true;
-    
+
     settings = {
       ipc = "on";
       splash = false;
@@ -16,7 +16,7 @@
       ];
 
       wallpaper = [
-        ",~/Pictures/wallpapers/nord-landscape.jpg"
+        ",~/.nix/wallpapers/mountain_jaws.jpg"
       ];
     };
   };
@@ -24,7 +24,7 @@
   # Create wallpapers directory and add some default nord wallpapers
   home.file = {
     "Pictures/wallpapers/.keep".text = "";
-    
+
     # You can add wallpaper files here if you have them
     # "Pictures/wallpapers/nord-landscape.jpg".source = ./path/to/your/wallpaper.jpg;
   };
@@ -40,7 +40,7 @@
   home.packages = with pkgs; [
     hyprpaper
     # Useful for wallpaper management
-    feh  # Image viewer and wallpaper setter
+    feh # Image viewer and wallpaper setter
     # You might also want these for wallpaper management:
     # swww  # Alternative wallpaper daemon
     # wpaperd  # Another wallpaper daemon option

@@ -64,23 +64,23 @@
     waypaper
     hyprcursor
     adi1090x-plymouth-themes
-    grim          # Screenshot tool
-    slurp         # Area selection for screenshots
-    wf-recorder   # Screen recording
-    wl-clipboard  # Clipboard integration
+    grim # Screenshot tool
+    slurp # Area selection for screenshots
+    wf-recorder # Screen recording
+    wl-clipboard # Clipboard integration
     xfce.thunar
-    xfce.thunar-volman        # Lightweight GUI file manager
+    xfce.thunar-volman # Lightweight GUI file manager
     xfce.thunar-archive-plugin
     xarchiver
-    gvfs          # Virtual filesystem support for trash, mounts, etc
-    yazi          # Modern TUI file manager
-    lazydocker    # Docker TUI management
-    lazygit       # Git TUI interface
-    cliphist      # Clipboard manager for Wayland
+    gvfs # Virtual filesystem support for trash, mounts, etc
+    yazi # Modern TUI file manager
+    lazydocker # Docker TUI management
+    lazygit # Git TUI interface
+    cliphist # Clipboard manager for Wayland
   ];
 
-  # Enable gvfs for virtual filesystem support (trash, automounting, etc)
-  services.gvfs.enable = true;
+  programs.dconf.enable = true;
+  programs.xfconf.enable = true;
 
   system.stateVersion = "25.05"; # Did you read the comment?
 

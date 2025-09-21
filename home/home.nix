@@ -36,10 +36,10 @@
   home.file.".local/bin/rofi-clipboard" = {
     text = ''
       #!/usr/bin/env bash
-      
+
       # Show clipboard history with rofi and copy selection
       selection=$(cliphist list | rofi -dmenu -i -p " Clipboard" -theme ~/.config/rofi/nord.rasi)
-      
+
       if [ -n "$selection" ]; then
         # Decode and copy the selected item
         echo "$selection" | cliphist decode | wl-copy
@@ -47,8 +47,7 @@
     '';
     executable = true;
   };
-
-  # Start cliphist daemon on login
+  # Clip history user service
   systemd.user.services.cliphist = {
     Unit = {
       Description = "Clipboard history daemon";
@@ -111,7 +110,6 @@
   #
   #  /etc/profiles/per-user/brandon/etc/profile.d/hm-session-vars.sh
   #
-
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
