@@ -21,6 +21,11 @@
       size = 24;
     };
     
+    font = {
+      name = "Ubuntu Sans";
+      size = 11;
+    };
+    
     gtk2.extraConfig = ''
       gtk-application-prefer-dark-theme=1
     '';
@@ -46,6 +51,7 @@
       icon-theme = "Papirus-Dark";
       cursor-theme = "Bibata-Modern-Ice";
       color-scheme = "prefer-dark";
+      font-name = "Ubuntu Sans 11";
     };
   };
 }

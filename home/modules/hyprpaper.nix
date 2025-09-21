@@ -1,5 +1,5 @@
 # hyprpaper.nix - Hyprpaper wallpaper daemon configuration
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   services.hyprpaper = {
@@ -38,7 +38,6 @@
   # Add wallpaper management packages
   home.packages = with pkgs; [
     hyprpaper
-    waypaper  # GUI wallpaper manager for Wayland
-    feh       # Image viewer and wallpaper setter
+    waypaper # GUI wallpaper manager for Wayland
   ];
 }
