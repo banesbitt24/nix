@@ -13,6 +13,7 @@
     ./modules/gtk.nix
     ./modules/hypridle.nix
     ./modules/hyprland.nix
+    ./modules/hyprlock.nix
     ./modules/hyprpaper.nix
     ./modules/hyprsunset.nix
     ./modules/fish.nix

@@ -8,6 +8,11 @@
   services.tumbler.enable = true;
   services.gvfs.enable = true;
 
+  # PAM configuration for fingerprint authentication
+  # Uncomment these lines to enable fingerprint for login and hyprlock
+  # security.pam.services.login.fprintAuth = true;
+  # security.pam.services.hyprlock.fprintAuth = true;
+
   # Enable polkit system service
   security.polkit.enable = true;
 
