@@ -11,12 +11,11 @@
       splash_offset = 2.0;
 
       preload = [
-        "~/Pictures/wallpapers/nord-landscape.jpg"
-        "~/Pictures/wallpapers/nord-abstract.jpg"
+        "~/.nix/wallpapers/mountain_jaws.jpg"
       ];
 
       wallpaper = [
-        ",~/.nix/wallpapers/mountain_jaws.jpg"
+        "eDP-1,~/.nix/wallpapers/mountain_jaws.jpg"
       ];
     };
   };
@@ -36,13 +35,10 @@
     ];
   };
 
-  # Add some useful wallpaper management packages
+  # Add wallpaper management packages
   home.packages = with pkgs; [
     hyprpaper
-    # Useful for wallpaper management
-    feh # Image viewer and wallpaper setter
-    # You might also want these for wallpaper management:
-    # swww  # Alternative wallpaper daemon
-    # wpaperd  # Another wallpaper daemon option
+    waypaper  # GUI wallpaper manager for Wayland
+    feh       # Image viewer and wallpaper setter
   ];
 }

@@ -18,6 +18,7 @@
       monitor = eDP-1,2256sx1504,auto,1.175
 
       # Autostart applications
+      exec-once = hyprpaper
       exec-once = hyprpanel
       exec-once = walker --gapplication-service
       exec-once = waybar
