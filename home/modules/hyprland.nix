@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   wayland.windowManager.hyprland = {
@@ -24,6 +24,7 @@
       exec-once = waybar
       exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
       exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
+      exec-once = hyprctl hyprpaper wallpaper ",~/.nix/wallpapers/mountain_jaws.jpg"
 
       # Keybindings
 
@@ -130,4 +131,3 @@
   };
 
 }
-
