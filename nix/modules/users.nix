@@ -9,6 +9,8 @@
       "wheel"
       "libvirtd"
       "docker"
+      "lp"      # Printer administration
+      "scanner" # Scanner access
     ];
   };
 }

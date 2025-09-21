@@ -5,11 +5,20 @@
   services.printing = {
     enable = true;
     drivers = with pkgs; [
-      # Brother drivers for MFC-J895DW
-      brlaser              # Brother laser printer driver
-      brgenml1lpr          # Brother Generic ML1 LPR driver
-      brgenml1cupswrapper  # Brother Generic ML1 CUPS wrapper
-      gutenprint           # Universal driver (fallback for Brother inkjet)
+      cups-filters
+      cups-browsed
+    ];
+  };
+
+  hardware.printers = {
+    ensureDefaultPrinter = "Brother_MFC-J895DW";
+    ensurePrinters = [
+      {
+        deviceUri = "ipp://192.168.1.111/ipp";
+        location = "home";
+        name = "Brother_MFC-J895DW";
+        model = "everywhere";
+      }
     ];
   };
 
@@ -18,10 +27,13 @@
     enable = true;
     nssmdns4 = true;
     openFirewall = true;
+    publish = {
+      enable = true;
+      userServices = true;
+    };
   };
 
-  # Install printer management tools
   environment.systemPackages = with pkgs; [
-    system-config-printer  # GUI printer configuration
+    system-config-printer
   ];
 }
