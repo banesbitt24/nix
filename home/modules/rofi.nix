@@ -1,13 +1,13 @@
 # rofi.nix - Rofi-wayland configuration with Nord theme
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;
-    
+
     font = "JetBrainsMono Nerd Font 10";
-    
+
     extraConfig = {
       modi = "drun,run,window";
       show-icons = true;
@@ -31,7 +31,7 @@
       scroll-method = 0;
       window-thumbnail = true;
     };
-    
+
     theme = "~/.config/rofi/nord.rasi";
   };
 

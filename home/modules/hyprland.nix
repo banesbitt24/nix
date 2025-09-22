@@ -35,7 +35,7 @@
       bind = $mainMod, Q, killactive
       bind = $mainMod, RETURN, exec, ghostty
       bind = $mainMod, R, exec, ${pkgs.rofi}/bin/rofi -show drun
-      bind = $mainMod shift, P, exec, ${pkgs.rofi}/bin/rofi -show power-menu -modi power-menu:rofi-power-menu
+      bind = $mainMod shift, P, exec, ~/.local/bin/rofi-power-hypr
       bind = $mainMod, V, exec, ~/.local/bin/rofi-clipboard # Open clipboard manager
       bind = $mainMod, E, exec, thunar # Open file manager
       bind = $mainMod, M, exit # Exit Hyprland

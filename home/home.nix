@@ -48,6 +48,41 @@
     '';
     executable = true;
   };
+
+  # Custom power menu with hyprlock
+  home.file.".local/bin/rofi-power-hypr" = {
+    text = ''
+      #!/usr/bin/env bash
+
+      # Power menu options
+      options=" Lock\n󰍃 Logout\n󰒲 Suspend\n⏾ Hibernate\n󰜉 Reboot\n⏻ Shutdown"
+
+      # Show menu and get selection
+      chosen=$(echo -e "$options" | rofi -dmenu -i -p "Power Menu" -theme ~/.config/rofi/nord.rasi)
+
+      case $chosen in
+          " Lock")
+              ${pkgs.hyprlock}/bin/hyprlock
+              ;;
+          "󰍃 Logout")
+              hyprctl dispatch exit
+              ;;
+          "󰒲 Suspend")
+              systemctl suspend
+              ;;
+          "⏾ Hibernate")
+              systemctl hibernate
+              ;;
+          "󰜉 Reboot")
+              systemctl reboot
+              ;;
+          "⏻ Shutdown")
+              systemctl poweroff
+              ;;
+      esac
+    '';
+    executable = true;
+  };
   # Clip history user service
   systemd.user.services.cliphist = {
     Unit = {
