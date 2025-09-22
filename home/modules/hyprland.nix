@@ -9,7 +9,7 @@
 
     extraConfig = ''
       debug {
-        disable_logs = true
+        disable_logs = false
       }
          
       # Portal environment
@@ -112,6 +112,8 @@
           enabled = true
           size = 2
           passes = 1
+          ignore_opacity = true
+          new_optimizations = true
         }
         shadow {
           enabled = false
@@ -120,6 +122,10 @@
           color = rgba(1a1a1aee)
         }
       }
+
+      # Fix context menus and popups
+      windowrulev2 = noblur, class:^()$, title:^()$
+      windowrulev2 = noshadow, class:^()$, title:^()$
 
       animations {
         enabled = true

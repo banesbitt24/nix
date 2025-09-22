@@ -7,7 +7,7 @@
     settings = {
       # Autologin configuration - directly login without graphical greeter
       default_session = {
-        command = "hyprland";
+        command = "hyprland > /dev/null 2>&1";
         user = "brandon";
       };
     };

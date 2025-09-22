@@ -8,6 +8,8 @@
   services.tumbler.enable = true;
   services.gvfs.enable = true;
   services.power-profiles-daemon.enable = true;
+  #hardware.bluetooth.enable = true;
+  #hardware.graphics.enable = true;
 
   # PAM configuration for fingerprint authentication
   # Uncomment these lines to enable fingerprint for login and hyprlock
