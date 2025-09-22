@@ -34,6 +34,8 @@
 
         modules-right = [
           "group/tray-expander"
+          "idle_inhibitor"
+          "power-profiles-daemon"
           "bluetooth"
           "network"
           "pulseaudio"
@@ -88,6 +90,14 @@
           on-click = "rofi-network-manager";
         };
 
+        idle_inhibitor = {
+          format = "{icon}";
+          format-icons = {
+            activated = "";
+            deactivated = "";
+          };
+        };
+
         battery = {
           format = "{capacity}% {icon}";
           format-discharging = "{icon}";
@@ -139,7 +149,7 @@
 
         pulseaudio = {
           format = "{icon}";
-          format-muted = " muted";
+          format-muted = "󰝟";
           on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
           tooltip-format = "Volume: {volume}%";
           scroll-step = 5;
@@ -175,6 +185,18 @@
         tray = {
           icon-size = 12;
           spacing = 12;
+        };
+
+        "power-profiles-daemon" = {
+          format = "{icon}";
+          tooltip-format = "Power profile: {profile}\nDriver: {driver}";
+          tooltip = true;
+          format-icons = {
+            default = "";
+            performance = "";
+            balanced = "";
+            power-saver = "";
+          };
         };
 
         "custom/weather" = {
@@ -231,7 +253,9 @@
 
       #tray, 
       #cpu, 
-      #battery, 
+      #battery,
+      #idle_inhibitor,
+      #power-profiles-daemon,
       #network, 
       #bluetooth, 
       #pulseaudio,

@@ -8,6 +8,10 @@
     systemd.enable = true;
 
     extraConfig = ''
+      debug {
+        disable_logs = true
+      }
+         
       # Portal environment
       env = XDG_CURRENT_DESKTOP,Hyprland
       env = XDG_SESSION_TYPE,wayland

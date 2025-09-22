@@ -7,6 +7,7 @@
   services.fprintd.enable = true;
   services.tumbler.enable = true;
   services.gvfs.enable = true;
+  services.power-profiles-daemon.enable = true;
 
   # PAM configuration for fingerprint authentication
   # Uncomment these lines to enable fingerprint for login and hyprlock
