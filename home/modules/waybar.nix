@@ -30,6 +30,7 @@
 
         modules-center = [
           "clock"
+          "custom/weather"
         ];
 
         modules-right = [
