@@ -8,7 +8,8 @@
     pavucontrol # For pulseaudio module clicks
     blueman # For bluetooth module clicks
     ghostty # Terminal for various on-click actions
-    wttrbar # Weather bar for custom weather module
+    python3 # For weather script
+    python3Packages.requests # Weather script dependency
   ];
 
   # Configure Waybar with Omarchy's clean setup
@@ -203,7 +204,7 @@
         "custom/weather" = {
           format = "{}";
           tooltip = true;
-          exec = "wttrbar --fahrenheit --mph --location Highlands_Ranch --custom-indicator '{ICON} {temp_F}°'";
+          exec = "$HOME/.local/bin/weather.py waybar";
           interval = 900;
           return-type = "json";
         };

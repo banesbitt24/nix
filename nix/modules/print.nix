@@ -14,7 +14,7 @@
     ensureDefaultPrinter = "Brother_MFC-J895DW";
     ensurePrinters = [
       {
-        deviceUri = "ipp://192.168.1.111/ipp";
+        deviceUri = "ipp://192.168.1.107/ipp";
         location = "home";
         name = "Brother_MFC-J895DW";
         model = "everywhere";

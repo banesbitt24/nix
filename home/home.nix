@@ -49,6 +49,12 @@
     executable = true;
   };
 
+  # Weather script
+  home.file.".local/bin/weather.py" = {
+    source = ../scripts/weather.py;
+    executable = true;
+  };
+
   # Custom power menu with hyprlock
   home.file.".local/bin/rofi-power-hypr" = {
     text = ''
