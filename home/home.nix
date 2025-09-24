@@ -49,9 +49,12 @@
     executable = true;
   };
 
-  # Weather script
+  # Weather script with Python wrapper
   home.file.".local/bin/weather.py" = {
-    source = ../scripts/weather.py;
+    text = ''
+      #!${pkgs.python3.withPackages (ps: with ps; [ requests ])}/bin/python3
+      ${builtins.replaceStrings ["#!/usr/bin/env python3"] [""] (builtins.readFile ../scripts/weather.py)}
+    '';
     executable = true;
   };
 

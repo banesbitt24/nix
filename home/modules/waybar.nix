@@ -1,5 +1,5 @@
 # waybar.nix - Waybar configuration for Home Manager (Omarchy-inspired)
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   # Install Waybar and dependencies
@@ -8,8 +8,6 @@
     pavucontrol # For pulseaudio module clicks
     blueman # For bluetooth module clicks
     ghostty # Terminal for various on-click actions
-    python3 # For weather script
-    python3Packages.requests # Weather script dependency
   ];
 
   # Configure Waybar with Omarchy's clean setup
@@ -36,8 +34,6 @@
 
         modules-right = [
           "group/tray-expander"
-          "idle_inhibitor"
-          "power-profiles-daemon"
           "bluetooth"
           "network"
           "pulseaudio"
@@ -176,6 +172,8 @@
           modules = [
             "custom/expand-icon"
             "tray"
+            "idle_inhibitor"
+            "power-profiles-daemon"
           ];
         };
 

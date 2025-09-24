@@ -17,15 +17,15 @@ import sys
 ### CONSTANTS ###
 
 # api key - get it at https://openweathermap.org/
-API_KEY = None
+API_KEY = '944394199faa7d01fabba028287f9990'
 
 # latitude and longitude of the city you want to query
 # can be obtained through `./weather.py geocoding <city[,state,country]>`
-LATITUDE  = None
-LONGITUDE = None
+LATITUDE  = 39.53
+LONGITUDE = -104.93
 
 # waybar colors (Nord theme)
-GRAY   = '#4c566a'
+GRAY   = '#eceff4'
 DARK   = '#3b4252'
 GREEN  = '#a3be8c'
 YELLOW = '#ebcb8b'
@@ -133,6 +133,35 @@ def colorize(text: str, color: str) -> str:
     @param color: the color as string ('#rrggbb')
     '''
     return f'<span foreground="{color}">{text}</span>'
+
+
+def get_weather_icon(weather_main: str) -> str:
+    '''
+    get weather icon for the given weather condition.
+
+    @param weather_main: main weather condition from OpenWeather API
+
+    @return weather icon as unicode string
+    '''
+    weather_icons = {
+        'clear': '☀️',
+        'clouds': '☁️',
+        'rain': '🌧️',
+        'drizzle': '🌦️',
+        'thunderstorm': '⛈️',
+        'snow': '❄️',
+        'mist': '🌫️',
+        'smoke': '🌫️',
+        'haze': '🌫️',
+        'dust': '🌫️',
+        'fog': '🌫️',
+        'sand': '🌫️',
+        'ash': '🌫️',
+        'squall': '💨',
+        'tornado': '🌪️'
+    }
+    
+    return weather_icons.get(weather_main.lower(), '🌤️')
 
 
 def waybar_entry(label: str, content: str, indent: int = 2, label_width: int = 9):
@@ -393,10 +422,11 @@ def waybar_widget(data: dict) -> str:
     @return widget component
     '''
 
-    weather = data['weather'][0]['main'].lower()
+    weather_main = data['weather'][0]['main']
+    weather_icon = get_weather_icon(weather_main)
     temperature = round(data['main']['temp'])
 
-    return f'{colorize(weather, DARK)} {temperature}°'
+    return f'{weather_icon} {temperature}°'
 
 
 def waybar_current(data: dict) -> str:
