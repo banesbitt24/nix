@@ -60,6 +60,7 @@
 
   # Screenshot menu with rofi
   home.file.".local/bin/rofi-screenshot" = {
+    executable = true;
     text = ''
       #!/usr/bin/env bash
 
@@ -88,7 +89,6 @@
               ;;
       esac
     '';
-    executable = true;
   };
 
   # Custom power menu with hyprlock

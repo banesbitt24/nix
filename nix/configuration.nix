@@ -78,6 +78,7 @@
     lazydocker # Docker TUI management
     lazygit # Git TUI interface
     cliphist # Clipboard manager for Wayland
+    mpv
   ];
 
   programs.dconf.enable = true;
