@@ -1,8 +1,8 @@
-{ ... }:
+{ lib, pkgs, ... }:
 
 {
   networking.hostName = "quicksilver"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.wireless.enable = false; # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -10,5 +10,20 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  # Explicitly disable wpa_supplicant service
+  #systemd.services.wpa_supplicant.enable = false;
+
+  # Speed up boot by disabling NetworkManager-wait-online
+  systemd.services.NetworkManager-wait-online.enable = false;
+
+  # Configure NetworkManager for faster startup
+  networking.networkmanager = {
+    wifi.powersave = false;
+    dns = "systemd-resolved";
+  };
+
+  # Enable systemd-resolved for faster DNS
+  services.resolved.enable = true;
 
 }

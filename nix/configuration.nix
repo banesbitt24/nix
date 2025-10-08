@@ -14,13 +14,14 @@
     ./modules/locale.nix
     ./modules/network.nix
     ./modules/greetd.nix
-    ./modules/print.nix
+    #./modules/print.nix
     ./modules/scan.nix
     ./modules/services.nix
     ./modules/sound.nix
     ./modules/time.nix
     ./modules/users.nix
     ./modules/virt.nix
+    ./modules/power.nix
   ];
 
   nix.settings.experimental-features = [
@@ -59,7 +60,6 @@
     nordic
     claude-code
     rofi-bluetooth
-    rofi-network-manager
     rofi-power-menu
     rofi-screenshot
     waypaper

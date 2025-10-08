@@ -53,6 +53,7 @@
             "4" = [ ];
             "5" = [ ];
             "6" = [ ];
+            "7" = [ ];
           };
         };
 
@@ -85,7 +86,7 @@
           tooltip-format-disconnected = "Disconnected";
           interval = 3;
           spacing = 1;
-          on-click = "rofi-network-manager";
+          on-click = "nmtui";
         };
 
         idle_inhibitor = {
@@ -221,7 +222,7 @@
         border-radius: 0;
         min-height: 0;
         font-family: "JetBrainsMono Nerd Font", monospace;
-        font-size: 12px;
+        font-size: 14px;
       }
 
       .modules-left {

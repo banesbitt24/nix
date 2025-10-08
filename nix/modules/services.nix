@@ -7,9 +7,9 @@
   services.fprintd.enable = true;
   services.tumbler.enable = true;
   services.gvfs.enable = true;
-  services.power-profiles-daemon.enable = true;
-  #hardware.bluetooth.enable = true;
-  #hardware.graphics.enable = true;
+  services.power-profiles-daemon.enable = false; # Disabled in favor of TLP
+  hardware.bluetooth.enable = true;
+  hardware.graphics.enable = true;
 
   # PAM configuration for fingerprint authentication
   # Uncomment these lines to enable fingerprint for login and hyprlock
@@ -22,8 +22,12 @@
   # Enable GNOME keyring for credential storage
   services.gnome.gnome-keyring.enable = true;
 
-  # Enable Docker service
-  virtualisation.docker.enable = true;
+  # Enable Docker service with optimizations
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = false; # Start Docker on-demand instead of boot
+    autoPrune.enable = true;
+  };
 
   # XDG portals for Hyprland
   xdg.portal = {
@@ -32,6 +36,18 @@
       xdg-desktop-portal-hyprland
       xdg-desktop-portal-gtk
     ];
-    config.common.default = "*";
+    config = {
+      common = {
+        default = [ "gtk" ];
+        "org.freedesktop.impl.portal.Settings" = [ "gtk" ];
+      };
+      hyprland = {
+        default = [
+          "hyprland"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.Settings" = [ "gtk" ];
+      };
+    };
   };
 }

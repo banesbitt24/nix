@@ -6,7 +6,7 @@
     enable = true;
     package = pkgs.rofi-wayland;
 
-    font = "JetBrainsMono Nerd Font 10";
+    font = "Ubuntu 10";
 
     extraConfig = {
       modi = "drun,run,window";
@@ -22,14 +22,14 @@
       hover-select = true;
       eh = 1;
       auto-select = false;
-      parse-hosts = true;
-      parse-known-hosts = true;
+      parse-hosts = false;
+      parse-known-hosts = false;
       combi-modi = "drun,run";
       matching = "fuzzy";
       sort = true;
       threads = 0;
       scroll-method = 0;
-      window-thumbnail = true;
+      window-thumbnail = false;
     };
 
     theme = "~/.config/rofi/nord.rasi";
@@ -57,7 +57,7 @@
 
           background-color: transparent;
           text-color: @nord6;
-          font: "JetBrainsMono Nerd Font 10";
+          font: "Ubuntu 10";
       }
 
       window {

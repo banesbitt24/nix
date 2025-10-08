@@ -50,10 +50,10 @@
           on-resume = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
         }
 
-        # Suspend system after 10 minutes
+        # Hibernate system after 10 minutes on battery, suspend on AC
         {
           timeout = 600;
-          on-timeout = "${pkgs.systemd}/bin/systemctl suspend";
+          on-timeout = "${pkgs.systemd}/bin/systemctl hibernate";
         }
       ];
     };

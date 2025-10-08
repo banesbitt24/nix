@@ -24,7 +24,6 @@
       # Autostart applications
       exec-once = hyprpaper
       exec-once = hyprpanel
-      exec-once = walker --gapplication-service
       exec-once = waybar
       exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
       exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
@@ -39,7 +38,7 @@
       # Actions
       bind = $mainMod, Q, killactive
       bind = $mainMod, RETURN, exec, ghostty
-      bind = $mainMod, R, exec, ${pkgs.rofi}/bin/rofi -show drun
+      bind = $mainMod, R, exec, rofi -show drun
       bind = $mainMod shift, P, exec, ~/.local/bin/rofi-power-hypr
       bind = $mainMod, V, exec, ~/.local/bin/rofi-clipboard # Open clipboard manager
       bind = $mainMod, E, exec, thunar # Open file manager
@@ -65,6 +64,7 @@
       bind = $mainMod, 4, workspace, 4
       bind = $mainMod, 5, workspace, 5
       bind = $mainMod, 6, workspace, 6
+      bind = $mainMod, 6, workspace, 7
 
       # Move active window to workspace
       bind = $mainMod SHIFT, 1, movetoworkspace, 1
@@ -73,6 +73,7 @@
       bind = $mainMod SHIFT, 4, movetoworkspace, 4
       bind = $mainMod SHIFT, 5, movetoworkspace, 5
       bind = $mainMod SHIFT, 6, movetoworkspace, 6
+      bind = $mainMod SHIFT, 6, movetoworkspace, 7
 
       general {
         gaps_in = 5
@@ -123,12 +124,12 @@
       animations {
         enabled = true
         bezier = myBezier, 0.05, 0.9, 0.1, 1.05
-        animation = windows, 1, 7, myBezier
-        animation = windowsOut, 1, 7, default, popin 80%
+        animation = windows, 1, 3, myBezier
+        animation = windowsOut, 1, 3, default, popin 80%
         animation = border, 1, 10, default
-        animation = borderangle, 1, 8, default
+        animation = borderangle, 1, 3, default
         animation = fade, 1, 7, default
-        animation = workspaces, 1, 6, default
+        animation = workspaces, 1, 3, default
       }
     '';
   };
