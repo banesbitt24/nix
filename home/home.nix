@@ -17,9 +17,9 @@
     ./modules/hyprpaper.nix
     ./modules/hyprsunset.nix
     ./modules/fish.nix
-    ./modules/ghostty.nix
     ./modules/helix.nix
     ./modules/k9s.nix
+    ./modules/kitty.nix
     ./modules/lazydocker.nix
     ./modules/lazygit.nix
     ./modules/mako.nix
@@ -53,7 +53,9 @@
   home.file.".local/bin/weather.py" = {
     text = ''
       #!${pkgs.python3.withPackages (ps: with ps; [ requests ])}/bin/python3
-      ${builtins.replaceStrings ["#!/usr/bin/env python3"] [""] (builtins.readFile ../scripts/weather.py)}
+      ${builtins.replaceStrings [ "#!/usr/bin/env python3" ] [ "" ] (
+        builtins.readFile ../scripts/weather.py
+      )}
     '';
     executable = true;
   };

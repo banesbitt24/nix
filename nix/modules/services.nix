@@ -9,6 +9,7 @@
   services.gvfs.enable = true;
   services.power-profiles-daemon.enable = false; # Disabled in favor of TLP
   hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
   hardware.graphics.enable = true;
 
   # PAM configuration for fingerprint authentication

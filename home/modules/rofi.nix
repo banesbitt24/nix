@@ -6,7 +6,7 @@
     enable = true;
     package = pkgs.rofi-wayland;
 
-    font = "Ubuntu 10";
+    font = "JetBrainsMono Nerd Font 12";
 
     extraConfig = {
       modi = "drun,run,window";
@@ -57,7 +57,7 @@
 
           background-color: transparent;
           text-color: @nord6;
-          font: "Ubuntu 10";
+          font: "JetBrainsMono Nerd Font 12";
       }
 
       window {

@@ -60,7 +60,7 @@
         cpu = {
           interval = 5;
           format = "󰍛";
-          on-click = "${pkgs.ghostty}/bin/ghostty -e btop";
+          on-click = "kitty -e btop";
         };
 
         clock = {
@@ -139,11 +139,11 @@
         };
 
         bluetooth = {
-          format = "";
+          format = "󰂯";
           format-disabled = "󰂲";
-          format-connected = "";
+          format-connected = "󰂱";
           tooltip-format = "Devices connected: {num_connections}";
-          on-click = "rofi-bluetooth";
+          on-click = "blueman-manager";
         };
 
         pulseaudio = {

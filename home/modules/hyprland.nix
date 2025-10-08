@@ -18,17 +18,29 @@
       env = HYPRCURSOR_THEME,Bibata-Modern-Ice
       env = HYPRCURSOR_SIZE,24
 
+      # Additional environment variables for Electron apps
+      env = ELECTRON_OZONE_PLATFORM_HINT,wayland
+      env = GDK_SCALE,1.175
+      env = QT_SCALE_FACTOR,1.175
+
+      # XWayland scaling configuration
+      xwayland {
+        force_zero_scaling = true
+      }
+
       # Monitor Config
       monitor = eDP-1,2256sx1504,auto,1.175
 
       # Autostart applications
       exec-once = hyprpaper
       exec-once = hyprpanel
-      exec-once = waybar
       exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
       exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
       exec-once = hyprctl hyprpaper wallpaper ",~/.nix/wallpapers/mountain_jaws.jpg"
       exec-once = hyprctl dispatch workspace 1
+      exec-once = nextcloud
+      exec-once = waybar
+      exec-once = [workspace special:proton-pass silent] proton-pass
 
       # Keybindings
 
@@ -37,11 +49,12 @@
 
       # Actions
       bind = $mainMod, Q, killactive
-      bind = $mainMod, RETURN, exec, ghostty
+      bind = $mainMod, RETURN, exec, kitty
       bind = $mainMod, R, exec, rofi -show drun
       bind = $mainMod shift, P, exec, ~/.local/bin/rofi-power-hypr
       bind = $mainMod, V, exec, ~/.local/bin/rofi-clipboard # Open clipboard manager
       bind = $mainMod, E, exec, thunar # Open file manager
+      bind = $mainMod, P, togglespecialworkspace, proton-pass # Toggle proton-pass
       bind = $mainMod, M, exit # Exit Hyprland
 
       # Screenshots and Recording
@@ -74,6 +87,24 @@
       bind = $mainMod SHIFT, 5, movetoworkspace, 5
       bind = $mainMod SHIFT, 6, movetoworkspace, 6
       bind = $mainMod SHIFT, 6, movetoworkspace, 7
+
+      # Brightness control
+      bind = , XF86MonBrightnessUp, exec, brightnessctl set +10%
+      bind = , XF86MonBrightnessDown, exec, brightnessctl set 10%-
+
+      # Volume control
+      bind = , XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+      bind = , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+      bind = , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+
+      # Media playback control
+      bind = , XF86AudioPlay, exec, playerctl play-pause
+      bind = , XF86AudioPause, exec, playerctl play-pause
+      bind = , XF86AudioNext, exec, playerctl next
+      bind = , XF86AudioPrev, exec, playerctl previous
+
+      # Waybar refresh
+      bind = $mainMod SHIFT, W, exec, pkill waybar && waybar &
 
       general {
         gaps_in = 5
@@ -120,6 +151,11 @@
       # Fix context menus and popups
       windowrulev2 = noblur, class:^()$, title:^()$
       windowrulev2 = noshadow, class:^()$, title:^()$
+      
+      # Move proton-pass to special workspace (scratchpad)
+      windowrulev2 = workspace special:proton-pass, class:^(proton-pass)$
+      windowrulev2 = size 80% 80%, class:^(proton-pass)$
+      windowrulev2 = center, class:^(proton-pass)$
 
       animations {
         enabled = true

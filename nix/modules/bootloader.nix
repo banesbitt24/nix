@@ -13,6 +13,7 @@
   boot.loader.timeout = 1;  # Reduce boot menu timeout
   boot.kernelParams = [
     "quiet"           # Reduce kernel messages
+    "splash"          # Enable Plymouth splash screen for LUKS prompts
     "loglevel=3"      # Show only important messages
     "systemd.show_status=auto"
     "rd.udev.log_level=3"
