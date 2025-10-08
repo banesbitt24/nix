@@ -159,8 +159,8 @@
       windowrulev2 = center, class:^(proton-pass)$
 
       # Make pavucontrol and blueman-manager floating
-      windowrulev2 = float, class:^(pavucontrol)$
-      windowrulev2 = float, class:^(blueman-manager)$
+      windowrulev2 = float, class:^(org.pulseaudio.pavucontrol)$
+      windowrulev2 = float, class:^(.blueman-manager-wrapped)$
 
       animations {
         enabled = true

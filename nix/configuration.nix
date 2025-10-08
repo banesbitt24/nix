@@ -21,6 +21,7 @@
     ./modules/users.nix
     ./modules/virt.nix
     ./modules/power.nix
+    ./modules/nix-cleanup.nix
   ];
 
   nix.settings.experimental-features = [

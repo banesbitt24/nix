@@ -61,7 +61,6 @@
         "hyprland/window" = {
           format = "{}";
           max-length = 50;
-          separate-outputs = true;
         };
 
         cpu = {
