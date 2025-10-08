@@ -50,10 +50,16 @@
           on-resume = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
         }
 
-        # Hibernate system after 10 minutes on battery, suspend on AC
+        # Hibernate after 15 minutes on battery
         {
-          timeout = 600;
-          on-timeout = "${pkgs.systemd}/bin/systemctl hibernate";
+          timeout = 900;
+          on-timeout = "[ $(cat /sys/class/power_supply/ADP*/online) -eq 0 ] && ${pkgs.systemd}/bin/systemctl hibernate";
+        }
+
+        # Suspend after 30 minutes on external power
+        {
+          timeout = 1800;
+          on-timeout = "[ $(cat /sys/class/power_supply/ADP*/online) -eq 1 ] && ${pkgs.systemd}/bin/systemctl suspend";
         }
       ];
     };

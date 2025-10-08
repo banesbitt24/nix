@@ -6,13 +6,15 @@
   boot.resumeDevice = "/dev/mapper/luks-swap";
   
   # Power management settings
-  services.logind = {
-    # Hibernate when lid is closed on battery power
-    lidSwitchExternalPower = "suspend";
-    lidSwitch = "hibernate";
-    
-    # Handle power button gracefully
-    powerKey = "poweroff";
+  services.logind.settings = {
+    Login = {
+      # Hibernate when lid is closed on battery power
+      HandleLidSwitchExternalPower = "suspend";
+      HandleLidSwitch = "hibernate";
+
+      # Handle power button gracefully
+      HandlePowerKey = "poweroff";
+    };
   };
 
   # Enable swap for hibernation

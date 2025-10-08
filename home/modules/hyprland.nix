@@ -52,6 +52,7 @@
       bind = $mainMod, RETURN, exec, kitty
       bind = $mainMod, R, exec, rofi -show drun
       bind = $mainMod shift, P, exec, ~/.local/bin/rofi-power-hypr
+      bind = $mainMod, L, exec, pidof hyprlock || hyprlock # Lock screen
       bind = $mainMod, V, exec, ~/.local/bin/rofi-clipboard # Open clipboard manager
       bind = $mainMod, E, exec, thunar # Open file manager
       bind = $mainMod, P, togglespecialworkspace, proton-pass # Toggle proton-pass
@@ -117,7 +118,7 @@
       }
 
       gestures {
-        workspace_swipe = true
+        gesture = 3, horizontal, workspace
       }
 
       input {
@@ -151,11 +152,15 @@
       # Fix context menus and popups
       windowrulev2 = noblur, class:^()$, title:^()$
       windowrulev2 = noshadow, class:^()$, title:^()$
-      
+
       # Move proton-pass to special workspace (scratchpad)
       windowrulev2 = workspace special:proton-pass, class:^(proton-pass)$
-      windowrulev2 = size 80% 80%, class:^(proton-pass)$
+      windowrulev2 = size 50% 50%, class:^(proton-pass)$
       windowrulev2 = center, class:^(proton-pass)$
+
+      # Make pavucontrol and blueman-manager floating
+      windowrulev2 = float, class:^(pavucontrol)$
+      windowrulev2 = float, class:^(blueman-manager)$
 
       animations {
         enabled = true

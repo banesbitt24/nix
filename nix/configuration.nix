@@ -30,6 +30,12 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  # Enable 32-bit support for gaming
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
   nix.extraOptions = ''
     warn-dirty = false
   '';
@@ -95,6 +101,14 @@
 
   programs.dconf.enable = true;
   programs.xfconf.enable = true;
+
+  # Gaming support
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };
 
   system.stateVersion = "25.05"; # Did you read the comment?
 

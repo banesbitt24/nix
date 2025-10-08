@@ -25,6 +25,7 @@
 
         modules-left = [
           "hyprland/workspaces"
+          "hyprland/window"
         ];
 
         modules-center = [
@@ -55,6 +56,12 @@
             "6" = [ ];
             "7" = [ ];
           };
+        };
+
+        "hyprland/window" = {
+          format = "{}";
+          max-length = 50;
+          separate-outputs = true;
         };
 
         cpu = {
@@ -174,7 +181,6 @@
             "custom/expand-icon"
             "tray"
             "idle_inhibitor"
-            "power-profiles-daemon"
           ];
         };
 
@@ -184,8 +190,8 @@
         };
 
         tray = {
-          icon-size = 12;
-          spacing = 12;
+          icon-size = 14;
+          spacing = 14;
         };
 
         "power-profiles-daemon" = {
@@ -250,6 +256,10 @@
         background-color: transparent;
         color: #81a1c1;
         font-weight: bold;
+      }
+
+      #window {
+        margin-left: 14px;
       }
 
       #tray, 
