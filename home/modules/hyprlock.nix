@@ -7,16 +7,17 @@ let
   # 1. Set enableFingerprint = true
   # 2. Uncomment PAM lines in nix/modules/services.nix
   # 3. Rebuild and enroll fingerprint with: fprintd-enroll
-  enableFingerprint = false;
+  enableFingerprint = true;
 in
 {
   # Create hyprlock config file
   home.file.".config/hypr/hyprlock.conf".text = ''
     general {
         disable_loading_bar = true
-        grace = 300
+        grace = 0
         hide_cursor = true
         no_fade_in = false
+        ignore_empty_input = false
     }
 
     background {
@@ -37,8 +38,11 @@ in
         outer_color = rgba(5e81acee)
         outline_thickness = 3
         rounding = 0
-        placeholder_text = Password...
+        placeholder_text = <i>Password or fingerprint...</i>
         shadow_passes = 0
+        fail_color = rgb(191, 97, 106)
+        fail_text = <i>$FAIL <b>($ATTEMPTS)</b></i>
+        fail_transition = 300
     }
 
     label {
@@ -67,9 +71,9 @@ in
     # Fingerprint authentication
     fingerprint {
         monitor =
-        ready_message = Place your finger on the scanner to unlock
-        present_message = Scanning fingerprint...
-        position = 0, -150
+        ready_message = <i>Place finger on scanner</i>
+        present_message = <i>Verifying...</i>
+        position = 0, -200
         halign = center
         valign = center
     }

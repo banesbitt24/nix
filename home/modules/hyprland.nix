@@ -155,12 +155,16 @@
 
       # Move proton-pass to special workspace (scratchpad)
       windowrulev2 = workspace special:proton-pass, class:^(Proton Pass)$
+      windowrulev2 = float, class:^(Proton Pass)$
       windowrulev2 = size 50% 50%, class:^(Proton Pass)$
       windowrulev2 = center, class:^(Proton Pass)$
 
       # Make pavucontrol and blueman-manager floating
       windowrulev2 = float, class:^(org.pulseaudio.pavucontrol)$
       windowrulev2 = float, class:^(.blueman-manager-wrapped)$
+      windowrulev2 = float, class:^(nmtui)$
+      windowrulev2 = size 50% 50%, class:^(nmtui)$
+      windowrulev2 = center, class:^(nmtui)$
 
       animations {
         enabled = true

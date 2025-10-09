@@ -91,7 +91,7 @@
           tooltip-format-disconnected = "Disconnected";
           interval = 3;
           spacing = 1;
-          on-click = "nmtui";
+          on-click = "kitty --class nmtui -e ${pkgs.networkmanager}/bin/nmtui";
         };
 
         idle_inhibitor = {

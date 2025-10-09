@@ -10,7 +10,7 @@
   boot.loader.grub.configurationLimit = 5;
 
   # Boot optimization settings
-  boot.loader.timeout = 1;  # Reduce boot menu timeout
+  boot.loader.timeout = 5;  # Boot menu timeout
   boot.kernelParams = [
     "quiet"           # Reduce kernel messages
     "splash"          # Enable Plymouth splash screen for LUKS prompts

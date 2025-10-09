@@ -20,6 +20,7 @@
       grep = "grep --color=auto";
       lg = "lazygit";
       ld = "lazydocker";
+      k = "kubectl";
 
       # Nix-specific aliases
       rebuild = "sudo nixos-rebuild switch --flake ~/.nix#quicksilver";

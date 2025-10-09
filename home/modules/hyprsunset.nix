@@ -17,22 +17,44 @@
     '')
   ];
 
-  # Optional: Create systemd user service for automatic scheduling
-  systemd.user.services.hyprsunset = {
+  # Timer to update temperature every hour
+  systemd.user.timers.hyprsunset = {
     Unit = {
-      Description = "Hyprsunset blue light filter";
-      PartOf = [ "hyprland-session.target" ];
+      Description = "Update hyprsunset temperature hourly";
     };
 
-    Service = {
-      Type = "simple";
-      ExecStart = "${pkgs.hyprsunset}/bin/hyprsunset -t 4000"; # 4000K temperature
-      Restart = "on-failure";
-      RestartSec = 5;
+    Timer = {
+      OnBootSec = "1min";
+      OnUnitActiveSec = "1h";
     };
 
     Install = {
-      WantedBy = [ "hyprland-session.target" ];
+      WantedBy = [ "timers.target" ];
+    };
+  };
+
+  systemd.user.services.hyprsunset = {
+    Unit = {
+      Description = "Update hyprsunset temperature based on time";
+    };
+
+    Service = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.writeShellScript "hyprsunset-update" ''
+        # Kill existing hyprsunset instances
+        ${pkgs.procps}/bin/pkill hyprsunset || true
+        sleep 1
+
+        # Run sunset-auto script
+        hour=$(${pkgs.coreutils}/bin/date +%H)
+        if [ $hour -ge 20 ] || [ $hour -le 6 ]; then
+          ${pkgs.hyprsunset}/bin/hyprsunset -t 3000 &  # Very warm at night
+        elif [ $hour -ge 18 ]; then
+          ${pkgs.hyprsunset}/bin/hyprsunset -t 4000 &  # Warm in evening
+        else
+          ${pkgs.hyprsunset}/bin/hyprsunset -t 6500 &  # Normal during day
+        fi
+      ''}";
     };
   };
 
