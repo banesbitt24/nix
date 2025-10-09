@@ -154,9 +154,9 @@
       windowrulev2 = noshadow, class:^()$, title:^()$
 
       # Move proton-pass to special workspace (scratchpad)
-      windowrulev2 = workspace special:proton-pass, class:^(proton-pass)$
-      windowrulev2 = size 50% 50%, class:^(proton-pass)$
-      windowrulev2 = center, class:^(proton-pass)$
+      windowrulev2 = workspace special:proton-pass, class:^(Proton Pass)$
+      windowrulev2 = size 50% 50%, class:^(Proton Pass)$
+      windowrulev2 = center, class:^(Proton Pass)$
 
       # Make pavucontrol and blueman-manager floating
       windowrulev2 = float, class:^(org.pulseaudio.pavucontrol)$

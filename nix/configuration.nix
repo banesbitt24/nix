@@ -46,15 +46,14 @@
     # Force Electron apps to use Wayland
     NIXOS_OZONE_WL = "1";
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";
-    
+
     # Scaling environment variables for fractional scaling (matches your 1.175 monitor scaling)
     GDK_SCALE = "1.175";
     QT_SCALE_FACTOR = "1.175";
-    XCURSOR_SIZE = "28";  # Scaled cursor size (24 * 1.175)
+    XCURSOR_SIZE = "28"; # Scaled cursor size (24 * 1.175)
   };
 
   environment.systemPackages = with pkgs; [
-    vim
     fprintd
     wget
     git
@@ -77,7 +76,6 @@
     papirus-nord
     nordic
     claude-code
-    rofi-bluetooth
     rofi-power-menu
     rofi-screenshot
     waypaper
@@ -97,7 +95,6 @@
     lazygit # Git TUI interface
     cliphist # Clipboard manager for Wayland
     mpv
-    killall
   ];
 
   programs.dconf.enable = true;

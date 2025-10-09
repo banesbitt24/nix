@@ -25,7 +25,6 @@
 
         modules-left = [
           "hyprland/workspaces"
-          "hyprland/window"
         ];
 
         modules-center = [
@@ -107,7 +106,7 @@
           format = "{capacity}% {icon}";
           format-discharging = "{icon}";
           format-charging = "{icon}";
-          format-plugged = "";
+          format-plugged = "{icon}";
           format-icons = {
             charging = [
               "󰢜"
@@ -261,13 +260,13 @@
         margin-left: 14px;
       }
 
-      #tray, 
-      #cpu, 
+      #tray,
+      #cpu,
       #battery,
       #idle_inhibitor,
       #power-profiles-daemon,
-      #network, 
-      #bluetooth, 
+      #network,
+      #bluetooth,
       #pulseaudio,
       #custom-weather {
         min-width: 12px;
