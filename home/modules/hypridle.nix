@@ -40,7 +40,7 @@
         # Lock screen after 5 minutes
         {
           timeout = 300;
-          on-timeout = "${pkgs.systemd}/bin/loginctl lock-session";
+          on-timeout = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
         }
 
         # Turn off displays after 6 minutes

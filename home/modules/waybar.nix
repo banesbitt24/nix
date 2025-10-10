@@ -64,6 +64,7 @@
         "hyprland/window" = {
           format = "{}";
           max-length = 50;
+          separate-outputs = true;
         };
 
         cpu = {
@@ -245,7 +246,6 @@
 
       * {
         background-color: transparent;
-        color: @nord6;
         border: none;
         border-radius: 0;
         min-height: 0;
@@ -296,7 +296,8 @@
 
       #window {
         margin-left: 14px;
-        color: @nord4;
+        color: #a3be8c;
+        font-weight: bold;
       }
 
       #clock {

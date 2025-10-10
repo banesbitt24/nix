@@ -55,6 +55,7 @@
 
   environment.systemPackages = with pkgs; [
     fprintd
+    rar
     wget
     git
     curl
@@ -63,6 +64,7 @@
     proton-pass
     protonmail-desktop
     obsidian
+    gparted
     freetube
     spotify
     nextcloud-client
@@ -70,6 +72,7 @@
     kubernetes-helm
     libreoffice-qt6
     gimp3-with-plugins
+    impression
     nixd
     nil
     nixfmt-rfc-style

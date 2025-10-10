@@ -173,7 +173,7 @@
         animation = windowsOut, 1, 3, default, popin 80%
         animation = border, 1, 10, default
         animation = borderangle, 1, 3, default
-        animation = fade, 1, 7, default
+        animation = fade, 1, 3, default
         animation = workspaces, 1, 3, default
       }
     '';
