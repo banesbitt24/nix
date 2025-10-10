@@ -38,7 +38,7 @@ in
         outer_color = rgba(5e81acee)
         outline_thickness = 3
         rounding = 0
-        placeholder_text = <i>Password or fingerprint...</i>
+        placeholder_text = <i>Password and fingerprint...</i>
         shadow_passes = 0
         fail_color = rgb(191, 97, 106)
         fail_text = <i>$FAIL <b>($ATTEMPTS)</b></i>
@@ -67,16 +67,21 @@ in
         valign = center
     }
 
-    ${if enableFingerprint then ''
-    # Fingerprint authentication
-    fingerprint {
-        monitor =
-        ready_message = <i>Place finger on scanner</i>
-        present_message = <i>Verifying...</i>
-        position = 0, -200
-        halign = center
-        valign = center
+    ${
+      if enableFingerprint then
+        ''
+          # Fingerprint authentication
+          fingerprint {
+              monitor =
+              ready_message = <i>Place finger on scanner</i>
+              present_message = <i>Verifying...</i>
+              position = 0, -200
+              halign = center
+              valign = center
+          }
+        ''
+      else
+        ""
     }
-    '' else ""}
   '';
 }

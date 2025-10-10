@@ -38,11 +38,11 @@
 
         modules-right = [
           "group/tray-expander"
-          "bluetooth"
           "network"
           "pulseaudio"
           "cpu"
           "battery"
+          "bluetooth"
         ];
 
         # Module configurations - Omarchy style
@@ -308,6 +308,7 @@
 
       #custom-weather {
         color: @nord13;
+        font-weight: bold;
       }
 
       #cpu {

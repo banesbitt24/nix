@@ -10,11 +10,11 @@
   boot.loader.grub.configurationLimit = 5;
 
   # Boot optimization settings
-  boot.loader.timeout = 5;  # Boot menu timeout
+  boot.loader.timeout = 5; # Boot menu timeout
   boot.kernelParams = [
-    "quiet"           # Reduce kernel messages
-    "splash"          # Enable Plymouth splash screen for LUKS prompts
-    "loglevel=3"      # Show only important messages
+    "quiet" # Reduce kernel messages
+    "splash" # Enable Plymouth splash screen for LUKS prompts
+    "loglevel=3" # Show only important messages
     "systemd.show_status=auto"
     "rd.udev.log_level=3"
     "mitigations=off" # Disable CPU mitigations for faster boot (security trade-off)
@@ -23,16 +23,16 @@
   # Optimize initrd
   boot.initrd = {
     verbose = false;
-    systemd.enable = true;  # Use systemd in initrd for parallel processing
+    systemd.enable = true; # Use systemd in initrd for parallel processing
   };
 
   boot.plymouth = {
     enable = true;
-    theme = "black_hud";
+    theme = "circuit";
     themePackages = with pkgs; [
       # Install only the specified theme(s)
       (adi1090x-plymouth-themes.override {
-        selected_themes = [ "black_hud" ];
+        selected_themes = [ "circuit" ];
       })
     ];
   };
