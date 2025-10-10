@@ -8,7 +8,7 @@
     settings = {
       # Font configuration
       font-family = "JetBrainsMono Nerd Font Mono";
-      font-size = 10;
+      font-size = 12;
       font-thicken = false;
 
       # Theme and appearance

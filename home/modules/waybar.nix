@@ -21,10 +21,14 @@
         layer = "top";
         position = "top";
         spacing = 0;
-        height = 26;
+        height = 30;
+        margin-top = 5;
+        margin-left = 5;
+        margin-right = 5;
 
         modules-left = [
           "hyprland/workspaces"
+          "hyprland/window"
         ];
 
         modules-center = [
@@ -97,8 +101,8 @@
         idle_inhibitor = {
           format = "{icon}";
           format-icons = {
-            activated = "";
-            deactivated = "";
+            activated = " ";
+            deactivated = " ";
           };
         };
 
@@ -183,12 +187,12 @@
         };
 
         "custom/expand-icon" = {
-          format = "󰞗 ";
+          format = "󰞗";
           tooltip = false;
         };
 
         tray = {
-          icon-size = 14;
+          icon-size = 16;
           spacing = 14;
         };
 
@@ -214,19 +218,39 @@
       }
     ];
 
-    # Omarchy's clean minimal styling
+    # Nord-themed styling
     style = ''
-      @define-color background #2e3440;
-      @define-color foreground #eceff4;
+      /* Nord Color Palette */
+      @define-color nord0 #2e3440;
+      @define-color nord1 #3b4252;
+      @define-color nord2 #434c5e;
+      @define-color nord3 #4c566a;
+      @define-color nord4 #d8dee9;
+      @define-color nord5 #e5e9f0;
+      @define-color nord6 #eceff4;
+      @define-color nord7 #8fbcbb;
+      @define-color nord8 #88c0d0;
+      @define-color nord9 #81a1c1;
+      @define-color nord10 #5e81ac;
+      @define-color nord11 #bf616a;
+      @define-color nord12 #d08770;
+      @define-color nord13 #ebcb8b;
+      @define-color nord14 #a3be8c;
+      @define-color nord15 #b48ead;
+
+      window#waybar {
+        background-color: @nord0;
+        border: 3px solid rgba(94, 129, 172, 0.93);
+      }
 
       * {
-        background-color: @background;
-        color: @foreground;
+        background-color: transparent;
+        color: @nord6;
         border: none;
         border-radius: 0;
         min-height: 0;
         font-family: "JetBrainsMono Nerd Font", monospace;
-        font-size: 14px;
+        font-size: 16px;
       }
 
       .modules-left {
@@ -243,21 +267,102 @@
         margin: 0 1.5px;
         min-width: 9px;
         background-color: transparent;
-        color: @foreground;
+      }
+
+      #workspaces button label {
+        color: #81a1c1;
       }
 
       #workspaces button.empty {
         opacity: 0.5;
       }
 
+      #workspaces button.empty label {
+        color: #4c566a;
+      }
+
       #workspaces button.active {
         background-color: transparent;
-        color: #81a1c1;
         font-weight: bold;
+      }
+
+      #workspaces button.active label {
+        color: #ebcb8b;
+      }
+
+      #workspaces button:hover label {
+        color: #88c0d0;
       }
 
       #window {
         margin-left: 14px;
+        color: @nord4;
+      }
+
+      #clock {
+        margin-left: 8.75px;
+        color: @nord8;
+        font-weight: bold;
+      }
+
+      #custom-weather {
+        color: @nord13;
+      }
+
+      #cpu {
+        color: @nord12;
+      }
+
+      #battery {
+        color: @nord14;
+      }
+
+      #battery.charging {
+        color: @nord14;
+      }
+
+      #battery.warning:not(.charging) {
+        color: @nord13;
+      }
+
+      #battery.critical:not(.charging) {
+        color: @nord11;
+      }
+
+      #network {
+        color: @nord9;
+      }
+
+      #network.disconnected {
+        color: @nord11;
+      }
+
+      #bluetooth {
+        color: @nord10;
+      }
+
+      #bluetooth.disabled {
+        color: @nord3;
+      }
+
+      #bluetooth.connected {
+        color: @nord8;
+      }
+
+      #pulseaudio {
+        color: @nord15;
+      }
+
+      #pulseaudio.muted {
+        color: @nord3;
+      }
+
+      #idle_inhibitor {
+        color: @nord7;
+      }
+
+      #idle_inhibitor.activated {
+        color: @nord13;
       }
 
       #tray,
@@ -275,26 +380,25 @@
 
       #custom-expand-icon {
         margin-right: 7px;
+        color: @nord4;
       }
 
       tooltip {
+        background-color: @nord1;
+        border: 1px solid @nord3;
         padding: 2px;
       }
 
-      #clock {
-        margin-left: 8.75px;
+      tooltip label {
+        color: @nord6;
       }
 
       .hidden {
         opacity: 0;
       }
 
-      #battery.critical:not(.charging) {
-        color: #bf616a;
-      }
-
       .tray-group-item {
-        background-color: @background;
+        background-color: transparent;
         border: none;
         border-radius: 0;
         padding: 0;

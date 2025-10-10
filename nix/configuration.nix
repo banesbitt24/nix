@@ -95,6 +95,15 @@
     lazygit # Git TUI interface
     cliphist # Clipboard manager for Wayland
     mpv
+    (pkgs.writeShellApplication {
+      name = "ns";
+      runtimeInputs = with pkgs; [
+        fzf
+        nix-search-tv
+      ];
+      text = builtins.readFile "${pkgs.nix-search-tv.src}/nixpkgs.sh";
+      checkPhase = ""; # Disable shellcheck since the upstream script has warnings
+    })
   ];
 
   programs.dconf.enable = true;

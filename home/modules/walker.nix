@@ -155,7 +155,7 @@
           color: @foreground;
           border: none;
           border-radius: 0;
-          font-size: 12px;
+          font-size: 16px;
           font-family: "JetBrainsMono Nerd Font", monospace;
           font-weight: normal;
         }
@@ -184,7 +184,7 @@
           margin: 0;
           font-weight: normal;
           font-family: "JetBrainsMono Nerd Font", monospace;
-          font-size: 12px;
+          font-size: 16px;
           transition: all 0.1s ease;
         }
 
@@ -207,7 +207,7 @@
         #label {
           color: @foreground;
           font-weight: 500;
-          font-size: 12px;
+          font-size: 16px;
           font-family: "JetBrainsMono Nerd Font", monospace;
         }
 

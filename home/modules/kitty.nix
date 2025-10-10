@@ -6,7 +6,7 @@
     package = pkgs.kitty;
     font = {
       name = "JetBrainsMono Nerd Font Mono";
-      size = 10;
+      size = 12;
     };
     
     settings = {
