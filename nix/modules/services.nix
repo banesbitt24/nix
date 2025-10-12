@@ -26,6 +26,14 @@
   # Enable GNOME keyring for credential storage
   services.gnome.gnome-keyring.enable = true;
 
+  # Enable PAM GNOME keyring integration for automatic unlock
+  security.pam.services.login.enableGnomeKeyring = true;
+
+  # For autologin: set up environment to use password-less default keyring
+  environment.sessionVariables = {
+    GNOME_KEYRING_CONTROL = "/run/user/1000/keyring";
+  };
+
   # Enable Docker service with optimizations
   virtualisation.docker = {
     enable = true;

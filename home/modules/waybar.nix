@@ -16,6 +16,7 @@
 
     # Omarchy's configuration
     settings = [
+      # Top bar
       {
         reload_style_on_change = true;
         layer = "top";
@@ -28,7 +29,6 @@
 
         modules-left = [
           "hyprland/workspaces"
-          "hyprland/window"
         ];
 
         modules-center = [
@@ -37,11 +37,8 @@
         ];
 
         modules-right = [
-          "group/tray-expander"
           "network"
           "pulseaudio"
-          "cpu"
-          "battery"
           "bluetooth"
         ];
 
@@ -74,8 +71,8 @@
         };
 
         clock = {
-          format = "{:L%A %H:%M}";
-          format-alt = "{:L%d %B %Y}";
+          format = " {:L%A %H:%M}";
+          format-alt = " {:L%d %B %Y}";
           tooltip = false;
         };
 
@@ -87,8 +84,8 @@
             "󰤥"
             "󰤨"
           ];
-          format = "{icon}";
-          format-wifi = "{icon}";
+          format = "{icon} {essid}: {signalStrength}%";
+          format-wifi = "{icon} {essid}: {signalStrength}%";
           format-ethernet = "󰀂";
           format-disconnected = "󰤮";
           tooltip-format-wifi = "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
@@ -107,58 +104,17 @@
           };
         };
 
-        battery = {
-          format = "{capacity}% {icon}";
-          format-discharging = "{icon}";
-          format-charging = "{icon}";
-          format-plugged = "{icon}";
-          format-icons = {
-            charging = [
-              "󰢜"
-              "󰂆"
-              "󰂇"
-              "󰂈"
-              "󰢝"
-              "󰂉"
-              "󰢞"
-              "󰂊"
-              "󰂋"
-              "󰂅"
-            ];
-            default = [
-              "󰁺"
-              "󰁻"
-              "󰁼"
-              "󰁽"
-              "󰁾"
-              "󰁿"
-              "󰂀"
-              "󰂁"
-              "󰂂"
-              "󰁹"
-            ];
-          };
-          format-full = "󰂅";
-          tooltip-format-discharging = "{power:>1.0f}W↓ {capacity}%";
-          tooltip-format-charging = "{power:>1.0f}W↑ {capacity}%";
-          interval = 5;
-          states = {
-            warning = 20;
-            critical = 10;
-          };
-        };
-
         bluetooth = {
-          format = "󰂯";
-          format-disabled = "󰂲";
-          format-connected = "󰂱";
+          format = "󰂯 Bluetooth: {status}";
+          format-disabled = "󰂲 Bluetooth: {status}";
+          format-connected = "󰂱 Bluetooth {device_alias}";
           tooltip-format = "Devices connected: {num_connections}";
           on-click = "blueman-manager";
         };
 
         pulseaudio = {
-          format = "{icon}";
-          format-muted = "󰝟";
+          format = "{icon} Volume: {volume}%";
+          format-muted = "󰝟 Volume: {volume}%";
           on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
           tooltip-format = "Volume: {volume}%";
           scroll-step = 5;
@@ -215,6 +171,118 @@
           exec = "$HOME/.local/bin/weather.py waybar";
           interval = 900;
           return-type = "json";
+        };
+      }
+
+      # Bottom bar
+      {
+        reload_style_on_change = true;
+        layer = "top";
+        position = "bottom";
+        spacing = 0;
+        height = 30;
+        margin-bottom = 5;
+        margin-left = 5;
+        margin-right = 5;
+
+        modules-left = [
+          "cpu#bottom"
+          "memory"
+          "disk"
+        ];
+
+        modules-center = [
+          "hyprland/window"
+        ];
+
+        modules-right = [
+          "mpris"
+          "battery"
+        ];
+
+        battery = {
+          format = "{icon} {capacity}%";
+          format-discharging = "{icon} {capacity}%";
+          format-charging = "{icon} {capacity}%";
+          format-plugged = "{icon} {capacity}%";
+          format-icons = {
+            charging = [
+              "󰢜"
+              "󰂆"
+              "󰂇"
+              "󰂈"
+              "󰢝"
+              "󰂉"
+              "󰢞"
+              "󰂊"
+              "󰂋"
+              "󰂅"
+            ];
+            default = [
+              "󰁺"
+              "󰁻"
+              "󰁼"
+              "󰁽"
+              "󰁾"
+              "󰁿"
+              "󰂀"
+              "󰂁"
+              "󰂂"
+              "󰁹"
+            ];
+          };
+          format-full = "󰂅";
+          tooltip-format-discharging = "{power:>1.0f}W↓ {capacity}%";
+          tooltip-format-charging = "{power:>1.0f}W↑ {capacity}%";
+          interval = 5;
+          states = {
+            warning = 20;
+            critical = 10;
+          };
+        };
+
+        # Bottom bar module configurations
+        "cpu#bottom" = {
+          interval = 5;
+          format = "󰍛 CPU: {usage}%";
+          on-click = "kitty -e btop";
+        };
+
+        memory = {
+          interval = 5;
+          format = " MEM: {used}G";
+          tooltip-format = "{used:0.1f}G / {total:0.1f}G used";
+          on-click = "kitty -e btop";
+        };
+
+        disk = {
+          interval = 30;
+          format = "󰋊 SSD: {free}";
+          path = "/";
+          tooltip-format = "{used} / {total} used ({percentage_used}%)";
+          on-click = "kitty -e btop";
+        };
+
+        "hyprland/window" = {
+          format = "{}";
+          max-length = 100;
+          separate-outputs = true;
+        };
+
+        mpris = {
+          format = "{player_icon} {title} - {artist}";
+          format-paused = "⏸ {title} - {artist}";
+          player-icons = {
+            default = "▶";
+            spotify = "";
+          };
+          max-length = 50;
+        };
+
+        "custom/power" = {
+          format = "⏻";
+          tooltip = false;
+          on-click = "rofi-power-hypr";
         };
       }
     ];
@@ -287,7 +355,7 @@
       }
 
       #workspaces button.active label {
-        color: #ebcb8b;
+        color: @nord6;
       }
 
       #workspaces button:hover label {
@@ -295,13 +363,13 @@
       }
 
       #window {
-        margin-left: 14px;
-        color: #a3be8c;
+        margin-left: 4px;
+        color: @nord13;
         font-weight: bold;
       }
 
       #clock {
-        margin-left: 8.75px;
+        margin-left: 2px;
         color: @nord8;
         font-weight: bold;
       }
@@ -317,72 +385,84 @@
 
       #battery {
         color: @nord14;
+        font-weight: bold;
       }
 
       #battery.charging {
         color: @nord14;
+        font-weight: bold;
       }
 
       #battery.warning:not(.charging) {
         color: @nord13;
+        font-weight: bold;
       }
 
       #battery.critical:not(.charging) {
         color: @nord11;
+        font-weight: bold;
       }
 
       #network {
         color: @nord9;
+        font-weight: bold;
       }
 
       #network.disconnected {
         color: @nord11;
+        font-weight: bold;
       }
 
       #bluetooth {
         color: @nord10;
+        font-weight: bold;
       }
 
       #bluetooth.disabled {
         color: @nord3;
+        font-weight: bold;
       }
 
       #bluetooth.connected {
         color: @nord8;
+        font-weight: bold;
       }
 
       #pulseaudio {
         color: @nord15;
+        font-weight: bold;
       }
 
       #pulseaudio.muted {
         color: @nord3;
+        font-weight: bold;
       }
 
       #idle_inhibitor {
         color: @nord7;
+        font-weight: bold;
       }
 
       #idle_inhibitor.activated {
         color: @nord13;
       }
 
-      #tray,
-      #cpu,
-      #battery,
-      #idle_inhibitor,
-      #power-profiles-daemon,
       #network,
       #bluetooth,
-      #pulseaudio,
+      #pulseaudio {
+        min-width: 12px;
+        margin: 0 6px;
+      }
+
       #custom-weather {
         min-width: 12px;
-        margin: 0 7.5px;
+        margin: 0 2px 0 12px;
       }
 
       #custom-expand-icon {
         margin-right: 7px;
         color: @nord4;
+        font-weight: bold;
       }
 
       tooltip {
@@ -404,6 +484,50 @@
         border: none;
         border-radius: 0;
         padding: 0;
+      }
+
+      /* Bottom bar styling */
+      #cpu.bottom,
+      #memory,
+      #disk {
+        margin: 0 6px;
+        min-width: 12px;
+        font-weight: bold;
+      }
+
+      #mpris,
+      #battery {
+        margin: 0 2px;
+        min-width: 12px;
+        font-weight: bold;
+      }
+
+      #cpu.bottom {
+        color: @nord12;
+      }
+
+      #memory {
+        color: @nord15;
+      }
+
+      #disk {
+        color: @nord8;
+      }
+
+      #mpris {
+        color: @nord13;
+      }
+
+      #custom-power {
+        color: @nord11;
+        font-size: 18px;
+        margin: 0 2px;
+        min-width: 12px;
+        font-weight: bold;
+      }
+
+      #custom-power:hover {
+        color: @nord13;
       }
     '';
   };

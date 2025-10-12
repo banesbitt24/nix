@@ -423,10 +423,11 @@ def waybar_widget(data: dict) -> str:
     '''
 
     weather_main = data['weather'][0]['main']
+    weather_description = data['weather'][0]['description'].title()
     weather_icon = get_weather_icon(weather_main)
     temperature = round(data['main']['temp'])
 
-    return f'{weather_icon} {temperature}°'
+    return f'{weather_icon} {weather_description}: {temperature}°'
 
 
 def waybar_current(data: dict) -> str:
