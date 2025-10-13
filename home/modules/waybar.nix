@@ -110,8 +110,8 @@
         idle_inhibitor = {
           format = "{icon}";
           format-icons = {
-            activated = " ";
-            deactivated = " ";
+            activated = "";
+            deactivated = "";
           };
         };
 
@@ -460,9 +460,6 @@
 
       #idle_inhibitor {
         color: @nord7;
-        font-weight: bold;
-        margin: 0 8px 0 12px;
-        min-width: 20px;
       }
 
       #idle_inhibitor.activated {
@@ -519,7 +516,13 @@
 
       #mpris,
       #battery {
-        margin: 0 2px;
+        margin: 0 6px;
+        min-width: 12px;
+        font-weight: bold;
+      }
+
+      #idle_inhibitor {
+        margin: 0 8px 0 6px;
         min-width: 12px;
         font-weight: bold;
       }
