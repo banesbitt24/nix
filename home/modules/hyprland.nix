@@ -60,10 +60,10 @@
 
       # Screenshots and Recording
       bind = , Print, exec, /home/brandon/.local/bin/rofi-screenshot # Rofi screenshot menu
-      bind = SHIFT, Print, exec, grim ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png && notify-send "Screenshot" "Full screen saved to ~/Pictures/" # Full screenshot to file
-      bind = CTRL, Print, exec, grim -g "$(slurp)" ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png && notify-send "Screenshot" "Area saved to ~/Pictures/" # Area screenshot to file
+      bind = SHIFT, Print, exec, grim ~/Nextcloud/Pictures/Screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png && notify-send "Screenshot" "Full screen saved to ~/Nextcloud/Pictures/Screenshots/" # Full screenshot to file
+      bind = CTRL, Print, exec, grim -g "$(slurp)" ~/Nextcloud/Pictures/Screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png && notify-send "Screenshot" "Area saved to ~/Nextcloud/Pictures/Screenshots/" # Area screenshot to file
       bind = $mainMod, Print, exec, grim -g "$(slurp)" - | wl-copy && notify-send "Screenshot" "Area copied to clipboard" # Screenshot area to clipboard
-      bind = $mainMod SHIFT, Print, exec, pkill wf-recorder && notify-send "Recording" "Recording stopped" || (wf-recorder -g "$(slurp)" -f ~/Videos/recording-$(date +%Y%m%d-%H%M%S).mp4 & notify-send "Recording" "Recording started") # Toggle area recording
+      bind = $mainMod SHIFT, Print, exec, pkill wf-recorder && notify-send "Recording" "Recording stopped" || (wf-recorder -g "$(slurp)" -f ~/Nextcloud/Videos/Screenshots/recording-$(date +%Y%m%d-%H%M%S).mp4 & notify-send "Recording" "Recording started") # Toggle area recording
 
       # Move focus with mainMod + arrow keys
       bind = $mainMod, left, movefocus, l # Move focus left

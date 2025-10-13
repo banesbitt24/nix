@@ -45,8 +45,19 @@
         # Module configurations - Omarchy style
         "hyprland/workspaces" = {
           on-click = "activate";
-          format = "{name}";
+          format = "{icon}";
           all-outputs = true;
+          sort-by-number = true;
+          format-icons = {
+            "1" = "WWW";
+            "2" = "DEV";
+            "3" = "MAIL";
+            "4" = "MEDIA";
+            "5" = "NOTES";
+            "6" = "VIRT";
+            "7" = "GAMES";
+            "default" = "{name}";
+          };
           persistent-workspaces = {
             "1" = [ ];
             "2" = [ ];
@@ -274,7 +285,7 @@
 
         "hyprland/window" = {
           format = "{}";
-          max-length = 100;
+          max-length = 50;
           separate-outputs = true;
         };
 

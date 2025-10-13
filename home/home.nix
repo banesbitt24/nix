@@ -67,26 +67,26 @@
       #!/usr/bin/env bash
 
       # Screenshot menu options
-      options="󰋫 Screenshot Area (Clipboard)\n󰋬 Screenshot Area (File)\n Full Screenshot (File)\n Record Area (Toggle)"
+      options="Area Clipboard\nArea File\nFull File\nRecord Toggle"
 
       # Show menu and get selection
       chosen=$(echo -e "$options" | rofi -dmenu -i -p "Screenshot")
 
       case $chosen in
-          "󰋫 Screenshot Area (Clipboard)")
+          "Area Clipboard")
               area=$(slurp) && grim -g "$area" - | wl-copy && notify-send "Screenshot" "Area copied to clipboard"
               ;;
-          "󰋬  Screenshot Area (File)")
-              area=$(slurp) && grim -g "$area" ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png && notify-send "Screenshot" "Area saved to ~/Pictures/"
+          "Area File")
+              area=$(slurp) && grim -g "$area" ~/Nextcloud/Pictures/Screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png && notify-send "Screenshot" "Area saved to ~/Nextcloud/Pictures/Screenshots/"
               ;;
-          "  Full Screenshot (File)")
-              grim ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png && notify-send "Screenshot" "Full screen saved to ~/Pictures/"
+          "Full File")
+              grim ~/Nextcloud/Pictures/Screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png && notify-send "Screenshot" "Full screen saved to ~/Nextcloud/Pictures/Screenshots/"
               ;;
-          " Record Area (Toggle)")
+          "Record Toggle")
               if pgrep wf-recorder; then
                   pkill wf-recorder && notify-send "Recording" "Recording stopped"
               else
-                  area=$(slurp) && wf-recorder -g "$area" -f ~/Videos/recording-$(date +%Y%m%d-%H%M%S).mp4 & notify-send "Recording" "Recording started"
+                  area=$(slurp) && wf-recorder -g "$area" -f ~/Nextcloud/Videos/Screenshots/recording-$(date +%Y%m%d-%H%M%S).mp4 & notify-send "Recording" "Recording started"
               fi
               ;;
       esac
