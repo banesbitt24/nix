@@ -1,2 +1,190 @@
-# nix
+# NixOS Configuration
 
+Personal NixOS configuration for a Framework AMD AI-300 series laptop running Hyprland (Wayland compositor). Built with Nix Flakes and Home Manager for declarative system and user-level configuration management.
+
+## 🖥️ System Information
+
+- **Host**: `quicksilver`
+- **Hardware**: Framework AMD AI-300 series laptop
+- **Display**: 2256x1504 @ 1.175 scaling (eDP-1)
+- **Window Manager**: Hyprland (Wayland)
+- **Theme**: Nord color scheme
+- **Shell**: Fish with Starship prompt
+- **State Version**: 25.05
+
+## 📁 Structure
+
+```
+.
+├── flake.nix                 # Main flake configuration
+├── nix/                      # System-level NixOS configuration
+│   ├── configuration.nix     # Main system config
+│   ├── hardware-configuration.nix
+│   └── modules/              # Modular system configurations
+│       ├── bootloader.nix
+│       ├── fonts.nix
+│       ├── greetd.nix
+│       ├── keymap.nix
+│       ├── locale.nix
+│       ├── network.nix
+│       ├── nix-cleanup.nix
+│       ├── power.nix
+│       ├── print.nix
+│       ├── scan.nix
+│       ├── services.nix
+│       ├── sound.nix
+│       ├── time.nix
+│       ├── users.nix
+│       └── virt.nix
+├── home/                     # User-level Home Manager configuration
+│   ├── home.nix              # Main home config
+│   └── modules/              # User application configurations
+│       ├── bibata-cursor.nix
+│       ├── brave.nix
+│       ├── btop.nix
+│       ├── fish.nix
+│       ├── ghostty.nix
+│       ├── git.nix
+│       ├── gtk.nix
+│       ├── helix.nix
+│       ├── hypridle.nix
+│       ├── hyprland.nix
+│       ├── hyprlock.nix
+│       ├── hyprpaper.nix
+│       ├── hyprsunset.nix
+│       ├── k9s.nix
+│       ├── kitty.nix
+│       ├── lazydocker.nix
+│       ├── lazygit.nix
+│       ├── mako.nix
+│       ├── rofi.nix
+│       ├── starship.nix
+│       ├── waybar.nix
+│       └── zellij.nix
+└── scripts/
+    └── weather.py            # Weather script for waybar
+```
+
+## 🚀 Quick Start
+
+### System Rebuild
+```bash
+# Rebuild and switch system configuration
+sudo nixos-rebuild switch --flake ~/.nix#quicksilver
+# Or use the fish alias:
+rebuild
+```
+
+### Update Flake Inputs
+```bash
+# Update all flake inputs
+nix flake update ~/.nix
+# Or use the fish alias:
+update-flake
+```
+
+### Garbage Collection
+```bash
+# Clean up old generations
+sudo nix-collect-garbage -d && nix-collect-garbage -d
+# Or use the fish alias:
+nix-gc
+```
+
+### Edit Configuration
+```bash
+# Opens ~/.nix in your editor
+nixconf
+```
+
+## 🔧 Development Tools
+
+### Available Commands
+- `lg` - LazyGit (Git TUI)
+- `ld` - LazyDocker (Docker TUI)
+- `k` - kubectl alias
+- `yazi` - Modern TUI file manager
+- `ns` - Interactive nix package search (fzf + nix-search-tv)
+
+### Flake Operations
+```bash
+# Check flake configuration
+nix flake check ~/.nix
+
+# Show flake outputs
+nix flake show ~/.nix
+
+# Test configuration without switching
+sudo nixos-rebuild test --flake ~/.nix#quicksilver
+
+# Build configuration without activating
+sudo nixos-rebuild build --flake ~/.nix#quicksilver
+```
+
+## 🎨 Desktop Environment
+
+### Hyprland Setup
+- **Modifier Key**: ALT (not Super/Meta)
+- **Status Bar**: Waybar with custom Nord theme and weather integration
+- **Launcher**: Rofi with Nord theme
+- **Notifications**: Mako
+- **Lock Screen**: Hyprlock
+- **Idle Management**: Hypridle
+- **Wallpaper**: Hyprpaper
+- **Night Light**: Hyprsunset
+- **Cursor**: Bibata Modern Ice
+
+### Custom Scripts
+Located in `~/.local/bin/`:
+- `rofi-clipboard` - Clipboard history manager (cliphist)
+- `rofi-screenshot` - Screenshot and recording menu
+- `rofi-power-hypr` - Power management menu
+- `weather.py` - Weather data for waybar (OpenWeatherAPI)
+
+### Key Applications
+- **Terminals**: Ghostty, Kitty
+- **Editor**: Helix
+- **Browser**: Brave
+- **File Managers**: Thunar (GUI), Yazi (TUI)
+- **Media**: MPV, Spotify
+- **Productivity**: Obsidian, LibreOffice, Proton Pass
+- **Development**: kubectl, helm, k9s, lazygit, lazydocker, nixd
+
+## 🎮 Gaming
+
+Steam is configured with:
+- Remote Play support
+- Dedicated Server support
+- Local Network Game Transfers
+- 32-bit graphics support enabled
+
+## 🔌 Hardware Features
+
+- Framework AMD AI-300 series optimizations via nixos-hardware
+- Fingerprint support (fprintd)
+- Power management tuning
+- Tailscale for networking
+- Virtualization support (virt-manager)
+
+## 🌐 Flake Inputs
+
+- **nixpkgs**: nixos-unstable channel
+- **home-manager**: User environment management
+- **nixos-hardware**: Hardware-specific configurations
+- **distro-grub-themes**: Custom GRUB themes
+
+## 📝 Notes
+
+- Home Manager backups use `.hmb` extension
+- Main user: `brandon` (wheel, docker, and essential groups)
+- Experimental features enabled: `nix-command`, `flakes`
+- Electron apps configured for native Wayland support
+- Fractional scaling set to 1.175 for optimal display
+
+## 🤝 Contributing
+
+This is a personal configuration, but feel free to use it as reference or inspiration for your own NixOS setup.
+
+## 📄 License
+
+Personal configuration - use at your own discretion.

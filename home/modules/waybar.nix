@@ -198,7 +198,16 @@
         modules-right = [
           "mpris"
           "battery"
+          "idle_inhibitor"
         ];
+
+        idle_inhibitor = {
+          format = "{icon}";
+          format-icons = {
+            activated = "";
+            deactivated = "";
+          };
+        };
 
         battery = {
           format = "{icon} {capacity}%";
@@ -441,6 +450,8 @@
       #idle_inhibitor {
         color: @nord7;
         font-weight: bold;
+        margin: 0 8px 0 12px;
+        min-width: 20px;
       }
 
       #idle_inhibitor.activated {
