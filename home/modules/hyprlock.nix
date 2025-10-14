@@ -22,7 +22,7 @@ in
 
     background {
         monitor =
-        path = /home/brandon/.nix/wallpapers/mountain_jaws.jpg
+        path = /home/brandon/.nix/wallpapers/nixos.png
         blur_passes = 1
         blur_size = 5
     }
@@ -30,7 +30,7 @@ in
     input-field {
         monitor =
         size = 200, 50
-        position = 0, -80
+        position = 0, 0
         dots_center = true
         fade_on_empty = false
         font_color = rgb(202, 211, 245)
@@ -51,9 +51,9 @@ in
         color = rgb(202, 211, 245)
         font_size = 64
         font_family = JetBrainsMono Nerd Font Mono
-        position = 0, 120
+        position = 0, -180
         halign = center
-        valign = center
+        valign = top
     }
 
     label {
@@ -62,9 +62,9 @@ in
         color = rgb(202, 211, 245)
         font_size = 24
         font_family = JetBrainsMono Nerd Font Mono
-        position = 0, 60
+        position = 0, -300
         halign = center
-        valign = center
+        valign = top
     }
 
     ${

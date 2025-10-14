@@ -7,7 +7,6 @@
     waybar
     pavucontrol # For pulseaudio module clicks
     blueman # For bluetooth module clicks
-    ghostty # Terminal for various on-click actions
   ];
 
   # Configure Waybar with Omarchy's clean setup
@@ -39,7 +38,6 @@
         modules-right = [
           "network"
           "pulseaudio"
-          "bluetooth"
         ];
 
         # Module configurations - Omarchy style
@@ -108,10 +106,10 @@
         };
 
         idle_inhibitor = {
-          format = "{icon}";
+          format = "{icon} Idle: {status}";
           format-icons = {
-            activated = "";
-            deactivated = "";
+            activated = " ";
+            deactivated = " ";
           };
         };
 
@@ -208,23 +206,23 @@
 
         modules-right = [
           "mpris"
-          "battery"
           "idle_inhibitor"
+          "battery"
         ];
 
         idle_inhibitor = {
-          format = "{icon}";
+          format = "{icon} Idle: {status}";
           format-icons = {
-            activated = "";
-            deactivated = "";
+            activated = " ";
+            deactivated = " ";
           };
         };
 
         battery = {
-          format = "{icon} {capacity}%";
-          format-discharging = "{icon} {capacity}%";
-          format-charging = "{icon} {capacity}%";
-          format-plugged = "{icon} {capacity}%";
+          format = "{icon} Battery: {capacity}%";
+          format-discharging = "{icon} Battery: {capacity}%";
+          format-charging = "{icon} Battery: {capacity}%";
+          format-plugged = "{icon} Battery: {capacity}%";
           format-icons = {
             charging = [
               "󰢜"
@@ -459,11 +457,11 @@
       }
 
       #idle_inhibitor {
-        color: @nord7;
+        color: @nord8;
       }
 
       #idle_inhibitor.activated {
-        color: @nord13;
+        color: @nord12;
       }
 
       #network,

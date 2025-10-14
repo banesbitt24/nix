@@ -39,8 +39,7 @@
     };
 
     Service = {
-      Type = "simple";
-      Restart = "on-failure";
+      Type = "oneshot";
       ExecStartPre = "${pkgs.bash}/bin/bash -c '${pkgs.procps}/bin/pkill hyprsunset || true'";
       ExecStart = "${pkgs.writeShellScript "hyprsunset-update" ''
         # Determine color temperature based on current hour

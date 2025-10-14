@@ -36,9 +36,9 @@
       exec-once = hyprpanel
       exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
       exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
-      exec-once = hyprctl hyprpaper wallpaper ",~/.nix/wallpapers/mountain_jaws.jpg"
+      exec-once = ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets
       exec-once = hyprctl dispatch workspace 1
-      exec-once = nextcloud
+      exec-once = nextcloud --background
       exec-once = waybar
       exec-once = [workspace special:proton-pass silent] proton-pass
 
