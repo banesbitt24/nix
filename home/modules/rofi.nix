@@ -64,7 +64,7 @@
           background-color: @nord0;
           border: 3px;
           border-color: @nord10;
-          border-radius: 0px;
+          border-radius: 4px;
           padding: 0px;
           width: 600px;
           location: center;

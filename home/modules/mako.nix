@@ -12,7 +12,7 @@
       margin = "10";
       padding = "16";
       border-size = 3;
-      border-radius = 0;
+      border-radius = 4;
       
       # Font configuration matching waybar
       font = "JetBrainsMono Nerd Font 10";
