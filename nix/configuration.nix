@@ -47,7 +47,7 @@
     NIXOS_OZONE_WL = "1";
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";
 
-    # Scaling environment variables for fractional scaling (matches your 1.175 monitor scaling)
+    # Scaling environment variables for fractional scaling
     GDK_SCALE = "1.175";
     QT_SCALE_FACTOR = "1.175";
     XCURSOR_SIZE = "28"; # Scaled cursor size (24 * 1.175)
@@ -84,19 +84,19 @@
     waypaper
     hyprcursor
     adi1090x-plymouth-themes
-    grim # Screenshot tool
-    slurp # Area selection for screenshots
-    wf-recorder # Screen recording
-    wl-clipboard # Clipboard integration
+    grim
+    slurp
+    wf-recorder
+    wl-clipboard
     xfce.thunar
-    xfce.thunar-volman # Lightweight GUI file manager
+    xfce.thunar-volman
     xfce.thunar-archive-plugin
     xarchiver
-    gvfs # Virtual filesystem support for trash, mounts, etc
-    yazi # Modern TUI file manager
-    lazydocker # Docker TUI management
-    lazygit # Git TUI interface
-    cliphist # Clipboard manager for Wayland
+    gvfs
+    yazi
+    lazydocker
+    lazygit
+    cliphist
     mpv
     xfce.ristretto
     delta

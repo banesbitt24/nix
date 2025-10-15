@@ -25,7 +25,8 @@
 
     Timer = {
       OnBootSec = "1min";
-      OnUnitActiveSec = "1h";
+      OnCalendar = "hourly";
+      Persistent = true;
     };
 
     Install = {
