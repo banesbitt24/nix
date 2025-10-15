@@ -99,6 +99,7 @@
     cliphist # Clipboard manager for Wayland
     mpv
     xfce.ristretto
+    delta
     (pkgs.writeShellApplication {
       name = "ns";
       runtimeInputs = with pkgs; [
