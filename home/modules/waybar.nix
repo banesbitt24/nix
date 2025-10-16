@@ -200,7 +200,7 @@
         ];
 
         modules-right = [
-          "mpris"
+          "custom/mpris"
           "idle_inhibitor"
           "battery"
         ];
@@ -285,13 +285,10 @@
           separate-outputs = true;
         };
 
-        mpris = {
-          format = "{player_icon} {title} - {artist}";
-          format-paused = "⏸ {title} - {artist}";
-          player-icons = {
-            default = "▶";
-            spotify = "";
-          };
+        "custom/mpris" = {
+          exec = "playerctl metadata --format '{{playerName}}: {{title}} - {{artist}}' 2>/dev/null";
+          interval = 1;
+          on-click = "playerctl play-pause";
           max-length = 50;
         };
 
@@ -587,7 +584,7 @@
         font-weight: bold;
       }
 
-      #mpris {
+      #custom-mpris {
         background-color: @nord3;
         border: 3px solid @nord1;
         border-radius: 4px;
@@ -595,6 +592,15 @@
         margin: 0 2px;
         color: @nord6;
         font-weight: bold;
+      }
+
+      #custom-mpris.empty {
+        background: transparent;
+        border: none;
+        min-width: 0;
+        min-height: 0;
+        padding: 0;
+        margin: 0;
       }
 
       #custom-power {
