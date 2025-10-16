@@ -24,6 +24,7 @@
     ./modules/lazygit.nix
     ./modules/mako.nix
     ./modules/rofi.nix
+    ./modules/ssh.nix
     ./modules/starship.nix
     ./modules/zellij.nix
     ./modules/waybar.nix

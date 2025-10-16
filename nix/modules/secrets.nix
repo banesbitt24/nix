@@ -17,6 +17,20 @@
         owner = "brandon";
         mode = "0400";
       };
+
+      "ssh-private-key" = {
+        # SSH private key will be deployed to /run/secrets/ssh-private-key
+        owner = "brandon";
+        mode = "0600";
+        path = "/home/brandon/.ssh/id_ed25519";
+      };
+
+      "ssh-public-key" = {
+        # SSH public key will be deployed to /run/secrets/ssh-public-key
+        owner = "brandon";
+        mode = "0644";
+        path = "/home/brandon/.ssh/id_ed25519.pub";
+      };
     };
   };
 }
