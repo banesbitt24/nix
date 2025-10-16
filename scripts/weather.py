@@ -17,7 +17,13 @@ import sys
 ### CONSTANTS ###
 
 # api key - get it at https://openweathermap.org/
-API_KEY = '944394199faa7d01fabba028287f9990'
+# Read API key from sops-managed secret file
+try:
+    with open('/run/secrets/openweather-api-key', 'r') as f:
+        API_KEY = f.read().strip()
+except FileNotFoundError:
+    # Fallback for development/testing
+    API_KEY = None
 
 # latitude and longitude of the city you want to query
 # can be obtained through `./weather.py geocoding <city[,state,country]>`

@@ -15,6 +15,7 @@
     ./modules/greetd.nix
     ./modules/print.nix
     ./modules/scan.nix
+    ./modules/secrets.nix
     ./modules/services.nix
     ./modules/sound.nix
     ./modules/time.nix

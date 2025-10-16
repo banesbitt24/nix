@@ -9,6 +9,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -17,6 +21,7 @@
       nixpkgs,
       nixos-hardware,
       home-manager,
+      sops-nix,
       ...
     }@inputs:
     {
@@ -26,6 +31,7 @@
           ./nix/configuration.nix
           nixos-hardware.nixosModules.framework-amd-ai-300-series
           inputs.distro-grub-themes.nixosModules.x86_64-linux.default
+          sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

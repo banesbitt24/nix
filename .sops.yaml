@@ -1,0 +1,8 @@
+keys:
+  - &brandon age19tmejm8mavd3rmrgsdwqmq3v4d333hz5vms3rce77lt5ukr4j4kqn28uq6
+
+creation_rules:
+  - path_regex: secrets/secrets\.yaml$
+    key_groups:
+      - age:
+          - *brandon

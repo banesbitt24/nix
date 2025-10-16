@@ -8,3 +8,7 @@ result-*
 
 CLAUDE.md
 home/home.nix.backup
+
+# Ignore the user-specific age key (used for sops encryption)
+# Note: The system key at /var/lib/sops-nix/key.txt is managed by NixOS
+.config/sops/age/keys.txt
