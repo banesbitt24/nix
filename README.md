@@ -31,6 +31,7 @@ Personal NixOS configuration for a Framework AMD AI-300 series laptop running Hy
 │       ├── power.nix
 │       ├── print.nix
 │       ├── scan.nix
+│       ├── secrets.nix        # Sops-nix secrets configuration
 │       ├── services.nix
 │       ├── sound.nix
 │       ├── time.nix
@@ -43,7 +44,6 @@ Personal NixOS configuration for a Framework AMD AI-300 series laptop running Hy
 │       ├── brave.nix
 │       ├── btop.nix
 │       ├── fish.nix
-│       ├── ghostty.nix
 │       ├── git.nix
 │       ├── gtk.nix
 │       ├── helix.nix
@@ -58,11 +58,15 @@ Personal NixOS configuration for a Framework AMD AI-300 series laptop running Hy
 │       ├── lazygit.nix
 │       ├── mako.nix
 │       ├── rofi.nix
+│       ├── ssh.nix
 │       ├── starship.nix
 │       ├── waybar.nix
 │       └── zellij.nix
-└── scripts/
-    └── weather.py            # Weather script for waybar
+├── scripts/
+│   └── weather.py            # Weather script for waybar
+├── secrets/
+│   └── secrets.yaml          # Encrypted secrets (sops-nix)
+└── .sops.yaml                # Sops configuration with age public keys
 ```
 
 ## 🚀 Quick Start
@@ -125,7 +129,7 @@ sudo nixos-rebuild build --flake ~/.nix#quicksilver
 
 ### Hyprland Setup
 - **Modifier Key**: ALT (not Super/Meta)
-- **Status Bar**: Waybar with custom Nord theme and weather integration
+- **Status Bar**: Waybar with custom Nord theme, weather integration, and MPRIS media control
 - **Launcher**: Rofi with Nord theme
 - **Notifications**: Mako
 - **Lock Screen**: Hyprlock
@@ -142,13 +146,14 @@ Located in `~/.local/bin/`:
 - `weather.py` - Weather data for waybar (OpenWeatherAPI)
 
 ### Key Applications
-- **Terminals**: Ghostty, Kitty
+- **Terminal**: Kitty
 - **Editor**: Helix
 - **Browser**: Brave
 - **File Managers**: Thunar (GUI), Yazi (TUI)
-- **Media**: MPV, Spotify
+- **Media**: MPV, Spotify (with MPRIS control in waybar)
 - **Productivity**: Obsidian, LibreOffice, Proton Pass
 - **Development**: kubectl, helm, k9s, lazygit, lazydocker, nixd
+- **Security**: SSH agent with automatic key loading, sops-nix for secrets
 
 ## 🎮 Gaming
 
@@ -166,12 +171,33 @@ Steam is configured with:
 - Tailscale for networking
 - Virtualization support (virt-manager)
 
+## 🔐 Secrets Management
+
+This configuration uses **sops-nix** for secure secrets management with age encryption:
+
+- **Encrypted storage**: Secrets are stored encrypted in `secrets/secrets.yaml`
+- **Age encryption**: Uses age public/private key pairs for encryption/decryption
+- **SSH keys**: SSH private and public keys are managed through sops-nix
+- **API keys**: Weather API and other sensitive keys stored securely
+- **Safe to commit**: All encrypted files and `.sops.yaml` config are safe to version control
+
+### Managed Secrets
+- OpenWeather API key (for waybar weather module)
+- SSH private/public key pair (deployed to `~/.ssh/`)
+
+### SSH Configuration
+- **SSH Agent**: Automatically starts with user session
+- **Key Management**: SSH keys deployed via sops-nix to `~/.ssh/`
+- **Auto-loading**: Keys automatically added to agent (`AddKeysToAgent yes`)
+- **Secure Storage**: Private keys stored encrypted, never committed to git
+
 ## 🌐 Flake Inputs
 
 - **nixpkgs**: nixos-unstable channel
 - **home-manager**: User environment management
 - **nixos-hardware**: Hardware-specific configurations
 - **distro-grub-themes**: Custom GRUB themes
+- **sops-nix**: Secrets management with age encryption
 
 ## 📝 Notes
 
@@ -180,6 +206,9 @@ Steam is configured with:
 - Experimental features enabled: `nix-command`, `flakes`
 - Electron apps configured for native Wayland support
 - Fractional scaling set to 1.175 for optimal display
+- Secrets managed with sops-nix using age encryption
+- SSH keys and API keys never stored in plaintext in git
+- MPRIS integration for media control in waybar bottom bar
 
 ## 🤝 Contributing
 
