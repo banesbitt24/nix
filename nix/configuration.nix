@@ -23,6 +23,7 @@
     ./modules/virt.nix
     ./modules/power.nix
     ./modules/nix-cleanup.nix
+    ./modules/k3s.nix
   ];
 
   nix.settings.experimental-features = [

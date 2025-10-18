@@ -32,6 +32,7 @@
 
   home.sessionVariables = {
     #EDITOR = "vim";
+    KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
   };
 
   # Clipboard manager configuration

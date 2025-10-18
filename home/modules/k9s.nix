@@ -3,7 +3,73 @@
 {
   programs.k9s = {
     enable = true;
-      
+
+    # Set default settings for k9s
+    settings = {
+      k9s = {
+        # Use live data refresh
+        liveViewAutoRefresh = true;
+        # Refresh rate in seconds
+        refreshRate = 2;
+        # Max number of items to keep in logs
+        maxConnRetry = 5;
+        # Read-only mode
+        readOnly = false;
+        # No exit on error
+        noExitOnCtrlC = false;
+        # UI settings
+        ui = {
+          enableMouse = false;
+          headless = false;
+          logoless = false;
+          crumbsless = false;
+          reactive = false;
+          noIcons = false;
+          skin = "nord";
+        };
+        # Skip latest rev check
+        skipLatestRevCheck = false;
+        # Disable pod metrics
+        disablePodCounting = false;
+        # Shell pod configuration
+        shellPod = {
+          image = "busybox:1.35.0";
+          namespace = "default";
+          limits = {
+            cpu = "100m";
+            memory = "100Mi";
+          };
+        };
+        # Image scan configuration
+        imageScans = {
+          enable = false;
+          exclusions = {
+            namespaces = [];
+            labels = {};
+          };
+        };
+        # Logger configuration
+        logger = {
+          tail = 100;
+          buffer = 5000;
+          sinceSeconds = -1;
+          textWrap = false;
+          showTime = false;
+        };
+        # Threshold configuration
+        thresholds = {
+          cpu = {
+            critical = 90;
+            warn = 70;
+          };
+          memory = {
+            critical = 90;
+            warn = 70;
+          };
+        };
+      };
+    };
+
     # Skins (themes) configuration
     skins = {
       # Nord theme configuration
