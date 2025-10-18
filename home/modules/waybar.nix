@@ -286,7 +286,7 @@
         };
 
         "custom/mpris" = {
-          exec = "playerctl metadata --format '{{playerName}}: {{title}} - {{artist}}' 2>/dev/null";
+          exec = "playerctl metadata --format '{{title}} - {{artist}}' 2>/dev/null";
           interval = 1;
           on-click = "playerctl play-pause";
           max-length = 50;
