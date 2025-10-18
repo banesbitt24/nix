@@ -18,7 +18,7 @@
   ];
 
   # Timer to update temperature every hour
-  systemd.user.timers.hyprsunset = {
+  systemd.user.timers.hyprsunset-update = {
     Unit = {
       Description = "Update hyprsunset temperature hourly";
     };
@@ -34,15 +34,17 @@
     };
   };
 
+  # Main hyprsunset service that runs continuously
   systemd.user.services.hyprsunset = {
     Unit = {
-      Description = "Adjust screen color temperature based on time";
+      Description = "Hyprsunset color temperature daemon";
+      After = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
     };
 
     Service = {
-      Type = "oneshot";
-      ExecStartPre = "${pkgs.bash}/bin/bash -c '${pkgs.procps}/bin/pkill hyprsunset || true'";
-      ExecStart = "${pkgs.writeShellScript "hyprsunset-update" ''
+      Type = "simple";
+      ExecStart = "${pkgs.writeShellScript "hyprsunset-daemon" ''
         # Determine color temperature based on current hour
         hour=$(${pkgs.coreutils}/bin/date +%H)
         if [ $hour -ge 20 ] || [ $hour -le 6 ]; then
@@ -56,10 +58,24 @@
         # Run hyprsunset in foreground
         exec ${pkgs.hyprsunset}/bin/hyprsunset -t $temp
       ''}";
+      Restart = "on-failure";
+      RestartSec = "5s";
     };
 
     Install = {
       WantedBy = [ "hyprland-session.target" ];
+    };
+  };
+
+  # Oneshot service triggered by timer to restart hyprsunset with new temperature
+  systemd.user.services.hyprsunset-update = {
+    Unit = {
+      Description = "Update hyprsunset color temperature";
+    };
+
+    Service = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.bash}/bin/bash -c '${pkgs.systemd}/bin/systemctl --user restart hyprsunset.service'";
     };
   };
 
