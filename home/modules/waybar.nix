@@ -36,6 +36,7 @@
         ];
 
         modules-right = [
+          "group/tray-expander"
           "bluetooth"
           "network"
           "pulseaudio"
@@ -143,7 +144,6 @@
           modules = [
             "custom/expand-icon"
             "tray"
-            "idle_inhibitor"
           ];
         };
 

@@ -101,6 +101,8 @@
     cliphist
     mpv
     xfce.ristretto
+    dropbox
+    xfce.thunar-dropbox-plugin
     delta
     (pkgs.writeShellApplication {
       name = "ns";

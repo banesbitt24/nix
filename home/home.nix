@@ -79,16 +79,16 @@
               area=$(slurp) && grim -g "$area" - | wl-copy && notify-send "Screenshot" "Area copied to clipboard"
               ;;
           "Area File")
-              area=$(slurp) && grim -g "$area" ~/Nextcloud/Pictures/Screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png && notify-send "Screenshot" "Area saved to ~/Nextcloud/Pictures/Screenshots/"
+              area=$(slurp) && grim -g "$area" ~/Dropbox/Pictures/Screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png && notify-send "Screenshot" "Area saved to ~/Dropbox/Pictures/Screenshots/"
               ;;
           "Full File")
-              grim ~/Nextcloud/Pictures/Screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png && notify-send "Screenshot" "Full screen saved to ~/Nextcloud/Pictures/Screenshots/"
+              grim ~/Dropbox/Pictures/Screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png && notify-send "Screenshot" "Full screen saved to ~/Dropbox/Pictures/Screenshots/"
               ;;
           "Record Toggle")
               if pgrep wf-recorder; then
                   pkill wf-recorder && notify-send "Recording" "Recording stopped"
               else
-                  area=$(slurp) && wf-recorder -g "$area" -f ~/Nextcloud/Videos/Screenshots/recording-$(date +%Y%m%d-%H%M%S).mp4 & notify-send "Recording" "Recording started"
+                  area=$(slurp) && wf-recorder -g "$area" -f ~/Dropbox/Videos/Screenshots/recording-$(date +%Y%m%d-%H%M%S).mp4 & notify-send "Recording" "Recording started"
               fi
               ;;
       esac
