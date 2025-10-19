@@ -69,7 +69,6 @@
     gparted
     freetube
     spotify
-    nextcloud-client
     kubectl
     kubernetes-helm
     libreoffice-qt6

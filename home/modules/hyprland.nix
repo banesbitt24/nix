@@ -38,7 +38,7 @@
       exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
       exec-once = ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets
       exec-once = hyprctl dispatch workspace 1
-      exec-once = nextcloud --background
+      exec-once = dropbox
       exec-once = waybar
       exec-once = [workspace special:proton-pass silent] proton-pass
 
