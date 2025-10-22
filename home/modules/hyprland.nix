@@ -109,7 +109,7 @@
 
       general {
         gaps_in = 5
-        gaps_out = 5
+        gaps_out = 8
         border_size = 3
         col.active_border = rgba(5e81acee)
         col.inactive_border = rgba(4c566aaa)

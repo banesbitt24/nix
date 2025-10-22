@@ -57,6 +57,7 @@
 
   environment.systemPackages = with pkgs; [
     fprintd
+    fastfetch
     rar
     wget
     git

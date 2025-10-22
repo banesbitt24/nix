@@ -28,6 +28,7 @@
 
         modules-left = [
           "hyprland/workspaces"
+          "hyprland/window"
         ];
 
         modules-center = [
@@ -37,12 +38,14 @@
 
         modules-right = [
           "group/tray-expander"
+          "cpu"
+          "idle_inhibitor"
           "bluetooth"
-          "network"
           "pulseaudio"
+          "network"
+          "battery"
         ];
 
-        # Module configurations - Omarchy style
         "hyprland/workspaces" = {
           on-click = "activate";
           format = "{icon}";
@@ -84,15 +87,15 @@
         network = {
           format-icons = [
             "󰤯"
-            "󰤟"
+            "󰤢"
             "󰤢"
             "󰤥"
             "󰤨"
           ];
-          format = "{icon}  {essid}: {signalStrength}%";
-          format-wifi = "{icon}  {essid}: {signalStrength}%";
-          format-ethernet = "󰀂 Wired Connection";
-          format-disconnected = "󰤮 Disconnected";
+          format = "{icon}";
+          format-wifi = "{icon}";
+          format-ethernet = "󰀂";
+          format-disconnected = "󰤮";
           tooltip-format-wifi = "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
           tooltip-format-ethernet = "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
           tooltip-format-disconnected = "Disconnected";
@@ -102,7 +105,7 @@
         };
 
         idle_inhibitor = {
-          format = "{icon} Idle: {status}";
+          format = "{icon}";
           format-icons = {
             activated = " ";
             deactivated = " ";
@@ -110,16 +113,16 @@
         };
 
         bluetooth = {
-          format = "󰂯 Bluetooth: {status}";
-          format-disabled = "󰂲 Bluetooth: {status}";
-          format-connected = "󰂱 Bluetooth {device_alias}";
+          format = "󰂯";
+          format-disabled = "󰂲";
+          format-connected = "󰂱";
           tooltip-format = "Devices connected: {num_connections}";
           on-click = "blueman-manager";
         };
 
         pulseaudio = {
-          format = "{icon} Volume: {volume}%";
-          format-muted = "󰝟 Volume: {volume}%";
+          format = "{icon}";
+          format-muted = "󰝟";
           on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
           tooltip-format = "Volume: {volume}%";
           scroll-step = 5;
@@ -132,6 +135,47 @@
           };
           states = {
             muted = 0;
+          };
+        };
+
+        battery = {
+          format = "{icon}";
+          format-discharging = "{icon}";
+          format-charging = "{icon}";
+          format-plugged = "{icon}";
+          format-icons = {
+            charging = [
+              "󰢜"
+              "󰂆"
+              "󰂇"
+              "󰂈"
+              "󰢝"
+              "󰂉"
+              "󰢞"
+              "󰂊"
+              "󰂋"
+              "󰂅"
+            ];
+            default = [
+              "󰁺"
+              "󰁻"
+              "󰁼"
+              "󰁽"
+              "󰁾"
+              "󰁿"
+              "󰂀"
+              "󰂁"
+              "󰂂"
+              "󰁹"
+            ];
+          };
+          format-full = "󰂅";
+          tooltip-format-discharging = "{power:>1.0f}W↓ {capacity}%";
+          tooltip-format-charging = "{power:>1.0f}W↑ {capacity}%";
+          interval = 5;
+          states = {
+            warning = 20;
+            critical = 10;
           };
         };
 
@@ -177,127 +221,6 @@
           return-type = "json";
         };
       }
-
-      # Bottom bar
-      {
-        reload_style_on_change = true;
-        layer = "top";
-        position = "bottom";
-        spacing = 0;
-        height = 24;
-        margin-bottom = 5;
-        margin-left = 5;
-        margin-right = 5;
-
-        modules-left = [
-          "cpu#bottom"
-          "memory"
-          "disk"
-        ];
-
-        modules-center = [
-          "hyprland/window"
-        ];
-
-        modules-right = [
-          "custom/mpris"
-          "idle_inhibitor"
-          "battery"
-        ];
-
-        idle_inhibitor = {
-          format = "{icon} Idle: {status}";
-          format-icons = {
-            activated = " ";
-            deactivated = " ";
-          };
-        };
-
-        battery = {
-          format = "{icon} Battery: {capacity}%";
-          format-discharging = "{icon} Battery: {capacity}%";
-          format-charging = "{icon} Battery: {capacity}%";
-          format-plugged = "{icon} Battery: {capacity}%";
-          format-icons = {
-            charging = [
-              "󰢜"
-              "󰂆"
-              "󰂇"
-              "󰂈"
-              "󰢝"
-              "󰂉"
-              "󰢞"
-              "󰂊"
-              "󰂋"
-              "󰂅"
-            ];
-            default = [
-              "󰁺"
-              "󰁻"
-              "󰁼"
-              "󰁽"
-              "󰁾"
-              "󰁿"
-              "󰂀"
-              "󰂁"
-              "󰂂"
-              "󰁹"
-            ];
-          };
-          format-full = "󰂅";
-          tooltip-format-discharging = "{power:>1.0f}W↓ {capacity}%";
-          tooltip-format-charging = "{power:>1.0f}W↑ {capacity}%";
-          interval = 5;
-          states = {
-            warning = 20;
-            critical = 10;
-          };
-        };
-
-        # Bottom bar module configurations
-        "cpu#bottom" = {
-          interval = 5;
-          format = "󰍛 CPU: {usage}%";
-          on-click = "kitty -e btop";
-        };
-
-        memory = {
-          interval = 5;
-          format = "  MEM: {used}G";
-          tooltip-format = "{used:0.1f}G / {total:0.1f}G used";
-          on-click = "kitty -e btop";
-        };
-
-        disk = {
-          interval = 30;
-          format = "󰋊 SSD: {free}";
-          path = "/";
-          tooltip-format = "{used} / {total} used ({percentage_used}%)";
-          on-click = "kitty -e btop";
-        };
-
-        "hyprland/window" = {
-          format = "<span>{title}</span>";
-          rewrite = {
-            "(.*)" = "$1";
-          };
-          max-length = 50;
-          separate-outputs = true;
-        };
-
-        "custom/mpris" = {
-          exec = "playerctl metadata --format '{{title}} - {{artist}}' 2>/dev/null";
-          interval = 1;
-          on-click = "playerctl play-pause";
-          max-length = 50;
-        };
-
-        "custom/power" = {
-          format = "⏻";
-          tooltip = false;
-          on-click = "rofi-power-hypr";
-        };
-      }
     ];
 
     # Nord-themed styling
@@ -338,7 +261,7 @@
         border: 3px solid @nord1;
         border-radius: 4px;
         padding: 0px 1px;
-        margin: 0 2px;
+        margin: 0 3px 0 2px;
       }
 
       #workspaces button {
@@ -364,7 +287,6 @@
 
       #workspaces button.active {
         background-color: transparent;
-        font-weight: bold;
       }
 
       #workspaces button.active label {
@@ -380,10 +302,9 @@
       }
 
       #window {
-        padding: 0px 6px;
-        margin: 0 2px;
+        padding: 0;
+        margin: 0;
         color: @nord6;
-        font-weight: bold;
       }
 
       #window > * {
@@ -391,6 +312,7 @@
         border: 3px solid @nord1;
         border-radius: 4px;
         padding: 0px 6px;
+        margin: 0 3px;
       }
 
       window#waybar.empty #window {
@@ -403,9 +325,8 @@
         border: 3px solid @nord1;
         border-radius: 4px;
         padding: 0px 6px;
-        margin: 0 2px;
+        margin: 0 3px;
         color: @nord6;
-        font-weight: bold;
       }
 
       #custom-weather {
@@ -413,38 +334,103 @@
         border: 3px solid @nord1;
         border-radius: 4px;
         padding: 0px 6px;
-        margin: 0 2px;
+        margin: 0 3px;
         color: @nord6;
-        font-weight: bold;
       }
 
-      #cpu.bottom {
-        background-color: @nord3;
-        border: 3px solid @nord1;
-        border-radius: 4px;
-        padding: 0px 6px;
-        margin: 0 2px;
-        color: @nord6;
-        font-weight: bold;
-      }
-
+      /* Style modules to look grouped together */
       #cpu {
         background-color: @nord3;
         border: 3px solid @nord1;
-        border-radius: 4px;
-        padding: 0px 6px;
-        margin: 0 2px;
+        border-right: 1px solid @nord3;
+        border-radius: 4px 0 0 4px;
+        padding: 0px 12px;
+        margin: 0 0 0 2px;
         color: @nord6;
+        font-size: 18px;
+      }
+
+      #idle_inhibitor {
+        background-color: @nord3;
+        border-top: 3px solid @nord1;
+        border-bottom: 3px solid @nord1;
+        border-left: none;
+        border-right: 1px solid @nord3;
+        border-radius: 0;
+        padding: 0px 6px;
+        margin: 0;
+        color: @nord6;
+        font-size: 16px;
+      }
+
+      #idle_inhibitor.activated {
+        color: @nord12;
+      }
+
+      #bluetooth {
+        background-color: @nord3;
+        border-top: 3px solid @nord1;
+        border-bottom: 3px solid @nord1;
+        border-left: none;
+        border-right: 1px solid @nord3;
+        border-radius: 0;
+        padding: 0px 8px;
+        margin: 0;
+        color: @nord6;
+        font-size: 18px;
+      }
+
+      #bluetooth.disabled {
+        color: @nord3;
+      }
+
+      #bluetooth.connected {
+        color: @nord6;
+      }
+
+      #pulseaudio {
+        background-color: @nord3;
+        border-top: 3px solid @nord1;
+        border-bottom: 3px solid @nord1;
+        border-left: none;
+        border-right: 1px solid @nord3;
+        border-radius: 0;
+        padding: 0px 8px;
+        margin: 0;
+        color: @nord6;
+        font-size: 18px;
+      }
+
+      #pulseaudio.muted {
+        color: @nord3;
+      }
+
+      #network {
+        background-color: @nord3;
+        border-top: 3px solid @nord1;
+        border-bottom: 3px solid @nord1;
+        border-left: none;
+        border-right: 1px solid @nord3;
+        border-radius: 0;
+        padding: 0px 10px;
+        margin: 0;
+        color: @nord6;
+        font-size: 18px;
+      }
+
+      #network.disconnected {
+        color: @nord11;
       }
 
       #battery {
         background-color: @nord3;
         border: 3px solid @nord1;
-        border-radius: 4px;
-        padding: 0px 6px;
-        margin: 0 2px;
+        border-left: none;
+        border-radius: 0 4px 4px 0;
+        padding: 0px 10px;
+        margin: 0 2px 0 0;
         color: @nord6;
-        font-weight: bold;
+        font-size: 18px;
       }
 
       #battery.charging {
@@ -461,68 +447,6 @@
         border-color: @nord1;
       }
 
-      #network {
-        background-color: @nord3;
-        border: 3px solid @nord1;
-        border-radius: 4px;
-        padding: 0px 6px;
-        margin: 0 2px;
-        color: @nord6;
-        font-weight: bold;
-      }
-
-      #network.disconnected {
-        color: @nord11;
-        border-color: @nord1;
-      }
-
-      #bluetooth {
-        background-color: @nord3;
-        border: 3px solid @nord1;
-        border-radius: 4px;
-        padding: 0px 6px;
-        margin: 0 2px;
-        color: @nord6;
-        font-weight: bold;
-      }
-
-      #bluetooth.disabled {
-        color: @nord3;
-      }
-
-      #bluetooth.connected {
-        color: @nord6;
-      }
-
-      #pulseaudio {
-        background-color: @nord3;
-        border: 3px solid @nord1;
-        border-radius: 4px;
-        padding: 0px 6px;
-        margin: 0 2px;
-        color: @nord6;
-        font-weight: bold;
-      }
-
-      #pulseaudio.muted {
-        color: @nord3;
-      }
-
-      #idle_inhibitor {
-        background-color: @nord3;
-        border: 3px solid @nord1;
-        border-radius: 4px;
-        padding: 0px 6px;
-        margin: 0 2px;
-        color: @nord6;
-        font-weight: bold;
-      }
-
-      #idle_inhibitor.activated {
-        color: @nord12;
-        border-color: @nord1;
-      }
-
       #custom-expand-icon {
         background-color: @nord3;
         border: 3px solid @nord1;
@@ -530,7 +454,6 @@
         padding: 0px 6px;
         margin: 0 2px;
         color: @nord6;
-        font-weight: bold;
       }
 
       #tray {
@@ -560,63 +483,6 @@
         border: none;
         border-radius: 0;
         padding: 0;
-      }
-
-      /* Bottom bar styling */
-
-      #memory {
-        background-color: @nord3;
-        border: 3px solid @nord1;
-        border-radius: 4px;
-        padding: 0px 6px;
-        margin: 0 2px;
-        color: @nord6;
-        font-weight: bold;
-      }
-
-      #disk {
-        background-color: @nord3;
-        border: 3px solid @nord1;
-        border-radius: 4px;
-        padding: 0px 6px;
-        margin: 0 2px;
-        color: @nord6;
-        font-weight: bold;
-      }
-
-      #custom-mpris {
-        background-color: @nord3;
-        border: 3px solid @nord1;
-        border-radius: 4px;
-        padding: 0px 6px;
-        margin: 0 2px;
-        color: @nord6;
-        font-weight: bold;
-      }
-
-      #custom-mpris.empty {
-        background: transparent;
-        border: none;
-        min-width: 0;
-        min-height: 0;
-        padding: 0;
-        margin: 0;
-      }
-
-      #custom-power {
-        background-color: @nord3;
-        border: 3px solid @nord1;
-        border-radius: 4px;
-        padding: 0px 6px;
-        margin: 0 2px;
-        color: @nord11;
-        font-size: 16px;
-        font-weight: bold;
-      }
-
-      #custom-power:hover {
-        color: @nord13;
-        border-color: @nord1;
       }
     '';
   };
