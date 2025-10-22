@@ -76,15 +76,19 @@
 
       case $chosen in
           "Area Clipboard")
+              sleep 1
               area=$(slurp) && grim -g "$area" - | wl-copy && notify-send "Screenshot" "Area copied to clipboard"
               ;;
           "Area File")
+              sleep 1
               area=$(slurp) && grim -g "$area" ~/Dropbox/Pictures/Screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png && notify-send "Screenshot" "Area saved to ~/Dropbox/Pictures/Screenshots/"
               ;;
           "Full File")
+              sleep 1
               grim ~/Dropbox/Pictures/Screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png && notify-send "Screenshot" "Full screen saved to ~/Dropbox/Pictures/Screenshots/"
               ;;
           "Record Toggle")
+              sleep 1
               if pgrep wf-recorder; then
                   pkill wf-recorder && notify-send "Recording" "Recording stopped"
               else
