@@ -1,6 +1,5 @@
 { lib
 , appimageTools
-, fetchurl
 }:
 
 let
@@ -21,13 +20,29 @@ in appimageTools.wrapType2 {
   ];
 
   extraInstallCommands = ''
+    # Rename the original binary
+    mv $out/bin/${pname} $out/bin/.${pname}-wrapped
+
+    # Create simple wrapper script with absolute path
+    cat > $out/bin/${pname} <<EOF
+#!/bin/sh
+# Replace bad desktop file with symlink to our good one
+mkdir -p ~/.local/share/applications
+rm -f ~/.local/share/applications/newshosting.desktop
+ln -sf $out/share/applications/newshosting.desktop ~/.local/share/applications/newshosting.desktop
+# Set Qt platform and launch
+export QT_QPA_PLATFORM=xcb
+exec "$out/bin/.${pname}-wrapped" "\$@"
+EOF
+    chmod +x $out/bin/${pname}
+
     # Install desktop file and icon
     install -Dm644 ${appimageContents}/newshosting.desktop $out/share/applications/newshosting.desktop
     install -Dm644 ${appimageContents}/newshosting.svg $out/share/icons/hicolor/scalable/apps/newshosting.svg
 
-    # Fix desktop file to set Qt platform and use full path
+    # Fix desktop file
     substituteInPlace $out/share/applications/newshosting.desktop \
-      --replace 'Exec=newshosting' 'Exec=env QT_QPA_PLATFORM=xcb ${pname}'
+      --replace 'Exec=newshosting' 'Exec=${pname}'
   '';
 
   meta = with lib; {
