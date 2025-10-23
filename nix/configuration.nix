@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
+{ pkgs, customPackages ? {}, ... }:
 
 {
   imports = [
@@ -31,7 +31,12 @@
     "flakes"
   ];
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    permittedInsecurePackages = [
+      "openssl-1.1.1w"
+    ];
+  };
 
   # Enable 32-bit support for gaming
   hardware.graphics = {
@@ -113,7 +118,9 @@
       text = builtins.readFile "${pkgs.nix-search-tv.src}/nixpkgs.sh";
       checkPhase = ""; # Disable shellcheck since the upstream script has warnings
     })
-  ];
+  ] ++ (with customPackages; [
+    newshosting
+  ]);
 
   programs.dconf.enable = true;
   programs.xfconf.enable = true;

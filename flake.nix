@@ -24,9 +24,27 @@
       sops-nix,
       ...
     }@inputs:
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+        config = {
+          allowUnfree = true;
+          permittedInsecurePackages = [
+            "openssl-1.1.1w"
+          ];
+        };
+      };
+
+      # Custom packages
+      newshosting = pkgs.callPackage ./nix/packages/newshosting-appimage.nix { };
+    in
     {
       nixosConfigurations.quicksilver = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+        specialArgs = {
+          inherit inputs;
+          customPackages = { inherit newshosting; };
+        };
         modules = [
           ./nix/configuration.nix
           nixos-hardware.nixosModules.framework-amd-ai-300-series
