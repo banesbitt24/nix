@@ -28,7 +28,6 @@
 
         modules-left = [
           "hyprland/workspaces"
-          "hyprland/window"
         ];
 
         modules-center = [
