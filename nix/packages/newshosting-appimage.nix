@@ -16,10 +16,18 @@ let
 in appimageTools.wrapType2 {
   inherit pname version src;
 
+  extraPkgs = pkgs: with pkgs; [
+    libsForQt5.qt5.qtwayland
+  ];
+
   extraInstallCommands = ''
     # Install desktop file and icon
-    install -Dm444 ${appimageContents}/newshosting.desktop -t $out/share/applications
-    install -Dm444 ${appimageContents}/newshosting.svg $out/share/icons/hicolor/scalable/apps/newshosting.svg
+    install -Dm644 ${appimageContents}/newshosting.desktop $out/share/applications/newshosting.desktop
+    install -Dm644 ${appimageContents}/newshosting.svg $out/share/icons/hicolor/scalable/apps/newshosting.svg
+
+    # Fix desktop file to set Qt platform and use full path
+    substituteInPlace $out/share/applications/newshosting.desktop \
+      --replace 'Exec=newshosting' 'Exec=env QT_QPA_PLATFORM=xcb ${pname}'
   '';
 
   meta = with lib; {
