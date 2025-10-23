@@ -20,23 +20,25 @@ Personal NixOS configuration for a Framework AMD AI-300 series laptop running Hy
 ├── nix/                      # System-level NixOS configuration
 │   ├── configuration.nix     # Main system config
 │   ├── hardware-configuration.nix
-│   └── modules/              # Modular system configurations
-│       ├── bootloader.nix
-│       ├── fonts.nix
-│       ├── greetd.nix
-│       ├── keymap.nix
-│       ├── locale.nix
-│       ├── network.nix
-│       ├── nix-cleanup.nix
-│       ├── power.nix
-│       ├── print.nix
-│       ├── scan.nix
-│       ├── secrets.nix        # Sops-nix secrets configuration
-│       ├── services.nix
-│       ├── sound.nix
-│       ├── time.nix
-│       ├── users.nix
-│       └── virt.nix
+│   ├── modules/              # Modular system configurations
+│   │   ├── bootloader.nix
+│   │   ├── fonts.nix
+│   │   ├── greetd.nix
+│   │   ├── keymap.nix
+│   │   ├── locale.nix
+│   │   ├── network.nix
+│   │   ├── nix-cleanup.nix
+│   │   ├── power.nix
+│   │   ├── print.nix
+│   │   ├── scan.nix
+│   │   ├── secrets.nix        # Sops-nix secrets configuration
+│   │   ├── services.nix
+│   │   ├── sound.nix
+│   │   ├── time.nix
+│   │   ├── users.nix
+│   │   └── virt.nix
+│   └── packages/             # Custom package definitions
+│       └── newshosting-appimage.nix
 ├── home/                     # User-level Home Manager configuration
 │   ├── home.nix              # Main home config
 │   └── modules/              # User application configurations
@@ -152,6 +154,7 @@ Located in `~/.local/bin/`:
 - **File Managers**: Thunar (GUI), Yazi (TUI)
 - **Media**: MPV, Spotify (with MPRIS control in waybar)
 - **Productivity**: Obsidian, LibreOffice, Proton Pass
+- **Usenet**: Newshosting (custom AppImage package)
 - **Development**: kubectl, helm, k9s, lazygit, lazydocker, nixd
 - **Security**: SSH agent with automatic key loading, sops-nix for secrets
 
@@ -199,6 +202,37 @@ This configuration uses **sops-nix** for secure secrets management with age encr
 - **distro-grub-themes**: Custom GRUB themes
 - **sops-nix**: Secrets management with age encryption
 
+## 📦 Custom Packages
+
+This configuration includes custom packages defined in `nix/packages/`:
+
+### Newshosting
+Newshosting Usenet client packaged as an AppImage wrapper.
+
+**Update process when new version is released:**
+
+1. Run the installer to download the new version:
+   ```bash
+   newshosting_installer
+   ```
+
+2. Copy the new AppImage to the package directory:
+   ```bash
+   cp ~/.local/share/Newshosting/<new-version>/Newshosting-x86_64.AppImage ~/.nix/nix/packages/
+   ```
+
+3. Update the version number in `nix/packages/newshosting-appimage.nix`:
+   ```nix
+   version = "X.Y.Z";  # New version number
+   ```
+
+4. Stage changes and rebuild:
+   ```bash
+   cd ~/.nix
+   git add nix/packages/Newshosting-x86_64.AppImage nix/packages/newshosting-appimage.nix
+   rebuild
+   ```
+
 ## 📝 Notes
 
 - Home Manager backups use `.hmb` extension
@@ -209,6 +243,7 @@ This configuration uses **sops-nix** for secure secrets management with age encr
 - Secrets managed with sops-nix using age encryption
 - SSH keys and API keys never stored in plaintext in git
 - MPRIS integration for media control in waybar bottom bar
+- OpenSSL 1.1 is permitted as insecure (required for some packages)
 
 ## 🤝 Contributing
 
