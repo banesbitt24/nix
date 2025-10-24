@@ -11,11 +11,11 @@
       splash_offset = 2.0;
 
       preload = [
-        "/home/brandon/.nix/wallpapers/nixos.png"
+        "/home/brandon/.nix/wallpapers/mountain_jaws.jpg"
       ];
 
       wallpaper = [
-        ",/home/brandon/.nix/wallpapers/nixos.png"
+        ",/home/brandon/.nix/wallpapers/mountain_jaws.jpg"
       ];
     };
   };
