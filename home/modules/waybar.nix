@@ -257,7 +257,7 @@
 
       #workspaces {
         background-color: @nord3;
-        border: 3px solid @nord1;
+        border: 3px solid @nord10;
         border-radius: 4px;
         padding: 0px 1px;
         margin: 0 3px 0 2px;
@@ -308,7 +308,7 @@
 
       #window > * {
         background-color: @nord3;
-        border: 3px solid @nord1;
+        border: 3px solid @nord10;
         border-radius: 4px;
         padding: 0px 6px;
         margin: 0 3px;
@@ -321,7 +321,7 @@
 
       #clock {
         background-color: @nord3;
-        border: 3px solid @nord1;
+        border: 3px solid @nord10;
         border-radius: 4px;
         padding: 0px 6px;
         margin: 0 3px;
@@ -330,7 +330,7 @@
 
       #custom-weather {
         background-color: @nord3;
-        border: 3px solid @nord1;
+        border: 3px solid @nord10;
         border-radius: 4px;
         padding: 0px 6px;
         margin: 0 3px;
@@ -340,7 +340,7 @@
       /* Style modules to look grouped together */
       #cpu {
         background-color: @nord3;
-        border: 3px solid @nord1;
+        border: 3px solid @nord10;
         border-right: 1px solid @nord3;
         border-radius: 4px 0 0 4px;
         padding: 0px 12px;
@@ -351,8 +351,8 @@
 
       #idle_inhibitor {
         background-color: @nord3;
-        border-top: 3px solid @nord1;
-        border-bottom: 3px solid @nord1;
+        border-top: 3px solid @nord10;
+        border-bottom: 3px solid @nord10;
         border-left: none;
         border-right: 1px solid @nord3;
         border-radius: 0;
@@ -368,8 +368,8 @@
 
       #bluetooth {
         background-color: @nord3;
-        border-top: 3px solid @nord1;
-        border-bottom: 3px solid @nord1;
+        border-top: 3px solid @nord10;
+        border-bottom: 3px solid @nord10;
         border-left: none;
         border-right: 1px solid @nord3;
         border-radius: 0;
@@ -389,8 +389,8 @@
 
       #pulseaudio {
         background-color: @nord3;
-        border-top: 3px solid @nord1;
-        border-bottom: 3px solid @nord1;
+        border-top: 3px solid @nord10;
+        border-bottom: 3px solid @nord10;
         border-left: none;
         border-right: 1px solid @nord3;
         border-radius: 0;
@@ -406,8 +406,8 @@
 
       #network {
         background-color: @nord3;
-        border-top: 3px solid @nord1;
-        border-bottom: 3px solid @nord1;
+        border-top: 3px solid @nord10;
+        border-bottom: 3px solid @nord10;
         border-left: none;
         border-right: 1px solid @nord3;
         border-radius: 0;
@@ -423,7 +423,7 @@
 
       #battery {
         background-color: @nord3;
-        border: 3px solid @nord1;
+        border: 3px solid @nord10;
         border-left: none;
         border-radius: 0 4px 4px 0;
         padding: 0px 10px;
@@ -438,26 +438,26 @@
 
       #battery.warning:not(.charging) {
         color: @nord13;
-        border-color: @nord1;
+        border-color: @nord10;
       }
 
       #battery.critical:not(.charging) {
         color: @nord11;
-        border-color: @nord1;
+        border-color: @nord10;
       }
 
       #custom-expand-icon {
         background-color: @nord3;
-        border: 3px solid @nord1;
+        border: 3px solid @nord10;
         border-radius: 4px;
-        padding: 0px 6px;
+        padding: 0px 10px;
         margin: 0 2px;
         color: @nord6;
       }
 
       #tray {
         background-color: @nord3;
-        border: 3px solid @nord1;
+        border: 3px solid @nord10;
         border-radius: 4px;
         padding: 0px 4px;
         margin: 0 2px;
