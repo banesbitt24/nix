@@ -290,6 +290,7 @@
 
       #workspaces button.active label {
         color: @nord6;
+        font-weight: bold;
       }
 
       #workspaces button:hover {
@@ -411,7 +412,7 @@
         border-left: none;
         border-right: 1px solid @nord3;
         border-radius: 0;
-        padding: 0px 10px;
+        padding: 0px 12px 0px 8px;
         margin: 0;
         color: @nord6;
         font-size: 18px;

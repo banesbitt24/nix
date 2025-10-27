@@ -69,25 +69,25 @@
       #!/usr/bin/env bash
 
       # Screenshot menu options
-      options="Area Clipboard\nArea File\nFull File\nRecord Toggle"
+      options="󰆏 Area Clipboard\n󰹑 Area File\n󰍹 Full File\n󰐊 Record Toggle"
 
       # Show menu and get selection
       chosen=$(echo -e "$options" | rofi -dmenu -i -p "Screenshot")
 
       case $chosen in
-          "Area Clipboard")
+          "󰆏 Area Clipboard")
               sleep 1
               area=$(slurp) && grim -g "$area" - | wl-copy && notify-send "Screenshot" "Area copied to clipboard"
               ;;
-          "Area File")
+          "󰹑 Area File")
               sleep 1
               area=$(slurp) && grim -g "$area" ~/Dropbox/Pictures/Screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png && notify-send "Screenshot" "Area saved to ~/Dropbox/Pictures/Screenshots/"
               ;;
-          "Full File")
+          "󰍹 Full File")
               sleep 1
               grim ~/Dropbox/Pictures/Screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png && notify-send "Screenshot" "Full screen saved to ~/Dropbox/Pictures/Screenshots/"
               ;;
-          "Record Toggle")
+          "󰐊 Record Toggle")
               sleep 1
               if pgrep wf-recorder; then
                   pkill wf-recorder && notify-send "Recording" "Recording stopped"
