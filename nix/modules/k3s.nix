@@ -27,6 +27,10 @@
       "--disable=traefik"
       # Write kubeconfig with correct permissions
       "--write-kubeconfig-mode=644"
+      # Specify flannel interface (WiFi) - k3s will auto-detect IP from this interface
+      "--flannel-iface=wlp192s0"
+      # Bind to all addresses to handle IP changes
+      "--bind-address=0.0.0.0"
     ];
   };
 
