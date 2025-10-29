@@ -10,6 +10,7 @@
 
   # Create directories for k3s and docker data
   systemd.tmpfiles.rules = [
+    "d /mnt/storage 0755 root root -"
     "d /mnt/storage/k3s 0755 root root -"
     "d /mnt/storage/docker 0755 root root -"
     "d /mnt/storage/k3s/server 0755 root root -"

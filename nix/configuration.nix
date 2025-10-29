@@ -24,6 +24,8 @@
     ./modules/power.nix
     ./modules/nix-cleanup.nix
     ./modules/k3s.nix
+    ./modules/build-cache.nix
+    ./modules/backup.nix
   ];
 
   nix.settings.experimental-features = [
