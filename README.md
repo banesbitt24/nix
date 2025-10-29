@@ -21,9 +21,12 @@ Personal NixOS configuration for a Framework AMD AI-300 series laptop running Hy
 │   ├── configuration.nix     # Main system config
 │   ├── hardware-configuration.nix
 │   ├── modules/              # Modular system configurations
+│   │   ├── backup.nix         # Automated home backup with restic
 │   │   ├── bootloader.nix
+│   │   ├── build-cache.nix    # Nix build cache configuration
 │   │   ├── fonts.nix
 │   │   ├── greetd.nix
+│   │   ├── k3s.nix            # Kubernetes and Docker with /mnt/storage
 │   │   ├── keymap.nix
 │   │   ├── locale.nix
 │   │   ├── network.nix
@@ -103,6 +106,22 @@ nix-gc
 nixconf
 ```
 
+### Backup Operations
+```bash
+# Initialize backup system (first time only)
+backup-init
+
+# Run manual backup
+backup-now
+
+# Check backup status and list snapshots
+backup-status
+
+# Restore from backup
+backup-restore latest ~/restore
+backup-restore <snapshot-id> <target-dir>
+```
+
 ## 🔧 Development Tools
 
 ### Available Commands
@@ -111,6 +130,17 @@ nixconf
 - `k` - kubectl alias
 - `yazi` - Modern TUI file manager
 - `ns` - Interactive nix package search (fzf + nix-search-tv)
+- `nix-cache-build` - Manually cache a Nix build output
+- `backup-init` - Initialize backup system
+- `backup-now` - Run backup immediately
+- `backup-status` - Check backup status
+- `backup-restore` - Restore from backup
+
+### Container & Kubernetes
+- **k3s**: Single-node Kubernetes cluster using `/mnt/storage/k3s`
+- **Docker**: Container runtime using `/mnt/storage/docker`
+- **kubectl**: Pre-configured with k3s kubeconfig
+- **k9s**: Terminal UI for Kubernetes clusters
 
 ### Flake Operations
 ```bash
@@ -131,7 +161,10 @@ sudo nixos-rebuild build --flake ~/.nix#quicksilver
 
 ### Hyprland Setup
 - **Modifier Key**: ALT (not Super/Meta)
-- **Status Bar**: Waybar with custom Nord theme, weather integration, and MPRIS media control
+- **Status Bar**: Waybar with clean Omarchy-inspired layout and Nord theme
+  - Left: Workspace labels (WWW, DEV, MAIL, MEDIA, NOTES, VIRT, GAMES)
+  - Center: Clock and weather widget
+  - Right: Tray expander, CPU monitor, idle inhibitor, bluetooth, audio, network, battery
 - **Launcher**: Rofi with Nord theme
 - **Notifications**: Mako
 - **Lock Screen**: Hyprlock
@@ -157,6 +190,96 @@ Located in `~/.local/bin/`:
 - **Usenet**: Newshosting (custom AppImage package)
 - **Development**: kubectl, helm, k9s, lazygit, lazydocker, nixd
 - **Security**: SSH agent with automatic key loading, sops-nix for secrets
+
+## 💾 Storage & Data Management
+
+### Storage Configuration
+The system uses a dedicated **1TB storage drive** (`/dev/sda1`) mounted at `/mnt/storage`:
+
+- `/mnt/storage/k3s` - Kubernetes k3s data directory
+- `/mnt/storage/docker` - Docker container and image storage
+- `/mnt/storage/backups/home` - Encrypted restic backup repository
+- `/mnt/storage/nix-cache` - Local Nix binary cache for faster rebuilds
+- `/mnt/storage/projects` - Development workspace (owned by brandon)
+- **Total**: 916GB available, ~869GB free
+
+### Build Cache System
+Configured in `nix/modules/build-cache.nix` to speed up NixOS rebuilds:
+
+- **Local binary cache**: Successful builds are cached in `/mnt/storage/nix-cache`
+- **Build optimization**: 10 cores for parallel builds, keeps derivations and outputs
+- **Docker BuildKit**: Enabled for better container layer caching
+- **Manual caching**: Use `nix-cache-build <store-path>` to cache specific builds
+
+The cache is automatically used for future rebuilds, significantly reducing build times for packages you've already built.
+
+### Automated Backup System
+Configured in `nix/modules/backup.nix` using **restic** for encrypted backups:
+
+**Configuration:**
+- **Repository**: `/mnt/storage/backups/home` (encrypted with auto-generated password)
+- **Schedule**: Daily at 2:00 AM (with 30min random delay)
+- **Retention**: 7 daily, 4 weekly, 12 monthly snapshots
+- **Auto-pruning**: Old snapshots automatically cleaned up
+
+**What's backed up:**
+- Entire `/home/brandon` directory with smart exclusions:
+  - Skips: caches, trash, Steam files, Downloads, node_modules, build artifacts
+  - Includes: Documents, configs, personal files, etc.
+
+**Manual operations:**
+```bash
+# Initialize (run once after setup)
+backup-init
+
+# Run backup immediately
+backup-now
+
+# Check status and list snapshots
+backup-status
+
+# Restore entire snapshot
+backup-restore latest ~/restore
+
+# Restore specific snapshot by ID
+backup-restore abc12345 ~/restore
+```
+
+**Advanced restic usage:**
+```bash
+# Set environment for direct restic commands
+export RESTIC_REPOSITORY="/mnt/storage/backups/home"
+export RESTIC_PASSWORD_FILE="/etc/nixos/secrets/restic-password"
+
+# List all snapshots
+sudo restic snapshots
+
+# List files in a snapshot
+sudo restic ls latest
+
+# Restore specific files/directories
+sudo restic restore latest --target ~/restore --include /home/brandon/Documents
+
+# Check repository integrity
+sudo restic check
+
+# View statistics
+sudo restic stats
+```
+
+**Monitoring:**
+```bash
+# Check timer status
+systemctl status restic-home-backup.timer
+
+# Check last backup run
+systemctl status restic-home-backup.service
+
+# View logs
+journalctl -u restic-home-backup.service
+```
+
+⚠️ **Important**: The backup password is at `/etc/nixos/secrets/restic-password` - keep this safe! Without it, backups cannot be restored.
 
 ## 🎮 Gaming
 
@@ -242,7 +365,9 @@ Newshosting Usenet client packaged as an AppImage wrapper.
 - Fractional scaling set to 1.175 for optimal display
 - Secrets managed with sops-nix using age encryption
 - SSH keys and API keys never stored in plaintext in git
-- MPRIS integration for media control in waybar bottom bar
+- Automated daily backups at 2 AM with restic (encrypted, deduplicated)
+- Local Nix binary cache for faster rebuilds
+- k3s and Docker use dedicated 1TB storage drive
 - OpenSSL 1.1 is permitted as insecure (required for some packages)
 
 ## 🤝 Contributing
