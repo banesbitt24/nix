@@ -2,7 +2,11 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, customPackages ? {}, ... }:
+{
+  pkgs,
+  customPackages ? { },
+  ...
+}:
 
 {
   imports = [
@@ -62,67 +66,70 @@
     XCURSOR_SIZE = "28"; # Scaled cursor size (24 * 1.175)
   };
 
-  environment.systemPackages = with pkgs; [
-    fprintd
-    fastfetch
-    rar
-    wget
-    git
-    curl
-    tailscale
-    figlet
-    proton-pass
-    protonmail-desktop
-    obsidian
-    gparted
-    freetube
-    spotify
-    kubectl
-    kubernetes-helm
-    libreoffice-qt6
-    gimp3-with-plugins
-    impression
-    nixd
-    nil
-    nixfmt-rfc-style
-    papirus-nord
-    nordic
-    claude-code
-    rofi-power-menu
-    rofi-screenshot
-    waypaper
-    hyprcursor
-    adi1090x-plymouth-themes
-    grim
-    slurp
-    wf-recorder
-    wl-clipboard
-    xfce.thunar
-    xfce.thunar-volman
-    xfce.thunar-archive-plugin
-    xarchiver
-    gvfs
-    yazi
-    lazydocker
-    lazygit
-    cliphist
-    mpv
-    xfce.ristretto
-    dropbox
-    xfce.thunar-dropbox-plugin
-    delta
-    (pkgs.writeShellApplication {
-      name = "ns";
-      runtimeInputs = with pkgs; [
-        fzf
-        nix-search-tv
-      ];
-      text = builtins.readFile "${pkgs.nix-search-tv.src}/nixpkgs.sh";
-      checkPhase = ""; # Disable shellcheck since the upstream script has warnings
-    })
-  ] ++ (with customPackages; [
-    newshosting
-  ]);
+  environment.systemPackages =
+    with pkgs;
+    [
+      fprintd
+      fastfetch
+      rar
+      wget
+      git
+      curl
+      tailscale
+      figlet
+      proton-pass
+      protonmail-desktop
+      obsidian
+      gparted
+      freetube
+      spotify
+      kubectl
+      kubernetes-helm
+      libreoffice-qt6
+      gimp3-with-plugins
+      popsicle
+      nixd
+      nil
+      nixfmt-rfc-style
+      papirus-nord
+      nordic
+      claude-code
+      rofi-power-menu
+      rofi-screenshot
+      waypaper
+      hyprcursor
+      adi1090x-plymouth-themes
+      grim
+      slurp
+      wf-recorder
+      wl-clipboard
+      xfce.thunar
+      xfce.thunar-volman
+      xfce.thunar-archive-plugin
+      xarchiver
+      gvfs
+      yazi
+      lazydocker
+      lazygit
+      cliphist
+      mpv
+      xfce.ristretto
+      dropbox
+      xfce.thunar-dropbox-plugin
+      delta
+      (pkgs.writeShellApplication {
+        name = "ns";
+        runtimeInputs = with pkgs; [
+          fzf
+          nix-search-tv
+        ];
+        text = builtins.readFile "${pkgs.nix-search-tv.src}/nixpkgs.sh";
+        checkPhase = ""; # Disable shellcheck since the upstream script has warnings
+      })
+    ]
+    ++ (with customPackages; [
+      newshosting
+    ]);
 
   programs.dconf.enable = true;
   programs.xfconf.enable = true;

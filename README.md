@@ -142,6 +142,24 @@ backup-restore <snapshot-id> <target-dir>
 - **kubectl**: Pre-configured with k3s kubeconfig
 - **k9s**: Terminal UI for Kubernetes clusters
 
+### Programming Languages & Tools
+Configured with Helix language server integration and auto-formatting:
+
+**Go:**
+- `go` - Go compiler and toolchain
+- `gopls` - Official Go language server
+- `goimports` - Auto-formatting with import management
+- `gotools` - Additional Go development tools
+
+**Rust:**
+- `rustup` - Rust toolchain installer and manager (includes rust-analyzer, rustc, cargo, clippy)
+- Managed via rustup for easy version switching
+
+**Terraform/Terragrunt:**
+- `terraform` - Infrastructure as Code tool
+- `terragrunt` - Terraform wrapper for DRY configurations
+- `terraform-ls` - Terraform language server
+
 ### Flake Operations
 ```bash
 # Check flake configuration
@@ -182,13 +200,14 @@ Located in `~/.local/bin/`:
 
 ### Key Applications
 - **Terminal**: Kitty
-- **Editor**: Helix
+- **Editor**: Helix (configured for Nix, Go, Rust, Terraform)
 - **Browser**: Brave
 - **File Managers**: Thunar (GUI), Yazi (TUI)
 - **Media**: MPV, Spotify (with MPRIS control in waybar)
 - **Productivity**: Obsidian, LibreOffice, Proton Pass
 - **Usenet**: Newshosting (custom AppImage package)
 - **Development**: kubectl, helm, k9s, lazygit, lazydocker, nixd
+- **Languages**: Go, Rust, Terraform/Terragrunt (with Helix LSP integration)
 - **Security**: SSH agent with automatic key loading, sops-nix for secrets
 
 ## 💾 Storage & Data Management
