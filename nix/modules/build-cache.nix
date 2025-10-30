@@ -54,10 +54,5 @@
     features = {
       buildkit = true;
     };
-
-    # Optimize storage
-    "storage-opts" = [
-      "overlay2.override_kernel_check=true"
-    ];
   };
 }

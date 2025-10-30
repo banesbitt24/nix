@@ -41,6 +41,8 @@
     storageDriver = "overlay2";
     daemon.settings = {
       data-root = "/mnt/storage/docker";
+      # Remove legacy overlay2.override_kernel_check option
+      storage-opts = [];
     };
   };
 
