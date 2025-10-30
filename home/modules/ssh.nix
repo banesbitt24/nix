@@ -9,11 +9,13 @@
   # SSH client configuration
   programs.ssh = {
     enable = true;
-    enableDefaultConfig = true;
+    enableDefaultConfig = false;
 
-    # SSH config settings
-    extraConfig = ''
-      AddKeysToAgent yes
-    '';
+    # Default settings for all hosts
+    matchBlocks."*" = {
+      extraOptions = {
+        AddKeysToAgent = "yes";
+      };
+    };
   };
 }
