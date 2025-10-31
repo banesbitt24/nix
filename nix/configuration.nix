@@ -70,6 +70,7 @@
     with pkgs;
     [
       fprintd
+      qbittorrent
       fastfetch
       rar
       wget
