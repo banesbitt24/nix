@@ -28,10 +28,12 @@
       };
       # Git configuration
       git = {
-        paging = {
-          colorArg = "always";
-          pager = "delta --dark --paging=never";
-        };
+        pagers = [
+          {
+            colorArg = "always";
+            pager = "delta --dark --paging=never";
+          }
+        ];
         merging = {
           manualCommit = false;
           args = "";
