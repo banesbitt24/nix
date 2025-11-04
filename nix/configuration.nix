@@ -82,7 +82,6 @@
       protonmail-desktop
       obsidian
       gparted
-      freetube
       spotify
       kubectl
       kubernetes-helm
