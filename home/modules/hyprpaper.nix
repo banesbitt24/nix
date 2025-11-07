@@ -15,7 +15,7 @@
       ];
 
       wallpaper = [
-        ",/home/brandon/.nix/wallpapers/nord_buildins.png"
+        ",/home/brandon/.nix/wallpapers/nord_buildings.png"
       ];
     };
   };
