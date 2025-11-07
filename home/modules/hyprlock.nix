@@ -22,7 +22,7 @@ in
 
     background {
         monitor =
-        path = /home/brandon/.nix/wallpapers/nixos.png
+        path = /home/brandon/.nix/wallpapers/nord_buildings.png
         blur_passes = 1
         blur_size = 5
     }
