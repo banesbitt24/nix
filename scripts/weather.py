@@ -5,6 +5,7 @@ import json
 import requests
 import statistics
 import sys
+import time
 
 
 
@@ -71,18 +72,29 @@ def print_help():
 def make_request(call: str) -> list | dict:
     '''
     make a request to an openweathermap api and returns the response as either
-    a list or a dictionary. the api key is added automatically. quits on error.
+    a list or a dictionary. the api key is added automatically. retries on
+    failure with exponential backoff (useful at login when network may not be ready).
 
     @param call: the api path, e.g. `data/2.5/weather?...`
 
     @return response of the api request as a list or dict
     '''
-    try:
-        req = requests.get(f'https://api.openweathermap.org/{call}&appid={API_KEY}')
-        return req.json()
-    except:
-        print_error(f'failed to make request to `/{call}`')
-        quit(1)
+    max_retries = 5
+    retry_delay = 1  # Start with 1 second delay
+
+    for attempt in range(max_retries):
+        try:
+            req = requests.get(f'https://api.openweathermap.org/{call}&appid={API_KEY}', timeout=10)
+            return req.json()
+        except Exception as e:
+            if attempt < max_retries - 1:
+                # Wait before retrying (exponential backoff)
+                time.sleep(retry_delay)
+                retry_delay *= 2  # Double the delay for next attempt
+            else:
+                # Final attempt failed, quit
+                print_error(f'failed to make request to `/{call}` after {max_retries} attempts')
+                quit(1)
 
 
 def get_wind_direction(deg: int) -> str:
