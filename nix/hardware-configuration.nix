@@ -14,9 +14,6 @@
   boot.blacklistedKernelModules = [ "serial8250" ];
   boot.extraModulePackages = [ ];
 
-  # Use latest LTS kernel
-  boot.kernelPackages = pkgs.linuxPackages;
-
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/98485b1e-1db2-4dae-9e28-550731449840";
       fsType = "ext4";
