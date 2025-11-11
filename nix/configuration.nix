@@ -27,7 +27,7 @@
     ./modules/virt.nix
     ./modules/power.nix
     ./modules/nix-cleanup.nix
-    ./modules/k3s.nix
+    ./modules/docker.nix
     ./modules/build-cache.nix
     ./modules/backup.nix
   ];
