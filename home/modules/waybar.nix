@@ -114,6 +114,7 @@
         bluetooth = {
           format = "󰂯";
           format-disabled = "󰂲";
+          format-off = "󰂲";
           format-connected = "󰂱";
           tooltip-format = "Devices connected: {num_connections}";
           on-click = "blueman-manager";
