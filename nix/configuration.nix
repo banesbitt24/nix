@@ -83,6 +83,7 @@
       obsidian
       gparted
       spotify
+      itch
       kubectl
       kubernetes-helm
       libreoffice-qt6

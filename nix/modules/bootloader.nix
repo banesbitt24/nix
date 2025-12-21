@@ -18,6 +18,8 @@
     "systemd.show_status=auto"
     "rd.udev.log_level=3"
     "mitigations=off" # Disable CPU mitigations for faster boot (security trade-off)
+    "mem_sleep_default=deep" # Force S3 deep sleep instead of s2idle for better battery life
+    "acpi.ec_no_wakeup=1" # Prevent spurious EC wakeups during sleep
   ];
 
   # Optimize initrd
