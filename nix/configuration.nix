@@ -28,6 +28,7 @@
     ./modules/power.nix
     ./modules/nix-cleanup.nix
     ./modules/docker.nix
+    ./modules/k3s.nix
     ./modules/build-cache.nix
     ./modules/backup.nix
   ];
@@ -116,6 +117,7 @@
       mpv
       xfce.ristretto
       dropbox
+      fwupd
       xfce.thunar-dropbox-plugin
       delta
       (pkgs.writeShellApplication {

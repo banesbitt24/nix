@@ -2,7 +2,7 @@
 
 {
   networking.hostName = "quicksilver"; # Define your hostname.
-  networking.wireless.enable = false; # Enables wireless support via wpa_supplicant.
+  networking.wireless.enable = false; # Disable wpa_supplicant (using NetworkManager instead)
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";

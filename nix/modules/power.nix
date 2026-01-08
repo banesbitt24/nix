@@ -6,14 +6,14 @@
   boot.resumeDevice = "/dev/mapper/luks-swap";
   
   # Power management settings
+  # Let Hyprland/hypridle handle lid events to avoid conflicts
   services.logind.settings = {
     Login = {
-      # Hibernate when lid is closed on battery power
-      HandleLidSwitchExternalPower = "suspend";
-      HandleLidSwitch = "hibernate";
-
-      # Handle power button gracefully
+      HandleLidSwitch = "ignore";  # Don't let systemd-logind handle the lid
+      HandleLidSwitchExternalPower = "ignore";
+      HandleLidSwitchDocked = "ignore";
       HandlePowerKey = "poweroff";
+      IdleAction = "ignore";
     };
   };
 

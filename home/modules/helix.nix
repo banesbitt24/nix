@@ -61,7 +61,7 @@
 
     # Terraform/Terragrunt
     terraform
-    terragrunt
+    # terragrunt  # Temporarily disabled due to build issues in nixpkgs
     terraform-ls
   ];
 }

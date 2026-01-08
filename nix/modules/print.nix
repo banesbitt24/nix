@@ -10,6 +10,9 @@
     ];
   };
 
+  # Enable color management for printers
+  services.colord.enable = true;
+
   hardware.printers = {
     ensureDefaultPrinter = "Brother_MFC-J895DW";
     ensurePrinters = [

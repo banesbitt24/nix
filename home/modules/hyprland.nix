@@ -44,6 +44,10 @@
 
       # Keybindings
 
+      # Lid switch handling - hibernate on battery, suspend on AC
+      bindl = , switch:on:Lid Switch, exec, ${pkgs.bash}/bin/bash -c '[ $(cat /sys/class/power_supply/ADP*/online) -eq 0 ] && ${pkgs.systemd}/bin/systemctl hibernate || ${pkgs.systemd}/bin/systemctl suspend'
+      bindl = , switch:off:Lid Switch, exec, ${pkgs.hyprland}/bin/hyprctl dispatch dpms on
+
       # SUPER Key
       $mainMod = ALT
 
