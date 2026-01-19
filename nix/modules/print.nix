@@ -14,12 +14,12 @@
   services.colord.enable = true;
 
   hardware.printers = {
-    ensureDefaultPrinter = "Brother_MFC-J895DW";
+    ensureDefaultPrinter = "Brother_MFC_J895DW";
     ensurePrinters = [
       {
         deviceUri = "ipp://192.168.1.107/ipp";
         location = "home";
-        name = "Brother_MFC-J895DW";
+        name = "Brother_MFC_J895DW";
         model = "everywhere";
       }
     ];
