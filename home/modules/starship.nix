@@ -5,10 +5,20 @@
     enable = true;
     
     settings = {
-      format = "$all$character";
-      
+      format = "$custom$all$character";
+
       # Use the Nerd Font preset
       "$schema" = "https://starship.rs/config-schema.json";
+
+      custom = {
+        shell = {
+          command = ''[ -n "$BASH_VERSION" ] && echo "bash" || echo "fish"'';
+          when = "true";
+          format = "[ $output]($style) ";
+          style = "bold cyan";
+          description = "Current shell indicator";
+        };
+      };
       
       character = {
         success_symbol = "[](bold green)";

@@ -7,6 +7,7 @@
   home.homeDirectory = "/home/brandon";
 
   imports = [
+    ./modules/bash.nix
     ./modules/bibata-cursor.nix
     ./modules/brave.nix
     ./modules/btop.nix
@@ -133,6 +134,71 @@
     '';
     executable = true;
   };
+
+  # Terminal switcher script
+  home.file.".local/bin/switch-term" = {
+    text = ''
+      #!/usr/bin/env bash
+
+      # Available terminals
+      TERMINALS=("kitty" "foot" "alacritty")
+      CURRENT_TERM_FILE="$HOME/.config/current-terminal"
+
+      # Get current terminal
+      get_current_term() {
+        if [ -f "$CURRENT_TERM_FILE" ]; then
+          cat "$CURRENT_TERM_FILE"
+        else
+          echo "kitty"
+        fi
+      }
+
+      # Set terminal
+      set_term() {
+        local term="$1"
+
+        # Validate terminal
+        if [[ ! " ''${TERMINALS[@]} " =~ " ''${term} " ]]; then
+          echo "Error: Unknown terminal '$term'"
+          echo "Available terminals: ''${TERMINALS[*]}"
+          return 1
+        fi
+
+        # Check if terminal is installed
+        if ! command -v "$term" &> /dev/null; then
+          echo "Error: Terminal '$term' is not installed"
+          return 1
+        fi
+
+        # Save current terminal
+        echo "$term" > "$CURRENT_TERM_FILE"
+
+        # Update environment variable for current session
+        export TERMINAL="$term"
+
+        echo "✓ Switched default terminal to $term"
+        echo "  Restart your shell or run 'exec \$SHELL' to update TERMINAL variable"
+
+        return 0
+      }
+
+      # Main logic
+      case "''${1:-}" in
+        "")
+          # No argument - show current
+          echo "Current terminal: $(get_current_term)"
+          echo "Available: ''${TERMINALS[*]}"
+          echo ""
+          echo "Usage: switch-term <terminal>"
+          ;;
+        *)
+          set_term "$1"
+          ;;
+      esac
+    '';
+    executable = true;
+  };
+
   # Clip history user service
   systemd.user.services.cliphist = {
     Unit = {
