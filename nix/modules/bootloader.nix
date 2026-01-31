@@ -17,7 +17,7 @@
     "loglevel=3" # Show only important messages
     "systemd.show_status=auto"
     "rd.udev.log_level=3"
-    "mitigations=off" # Disable CPU mitigations for faster boot (security trade-off)
+    # "mitigations=off" removed - can cause kernel instability
     "amdgpu.gpu_recovery=1" # Enable automatic GPU recovery on hangs
     "amdgpu.sg_display=0" # Fix display wake issues on AMD GPUs
     "mem_sleep_default=deep" # Use deep sleep (S3) for better compatibility
