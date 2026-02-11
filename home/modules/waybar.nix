@@ -116,7 +116,11 @@
           format-disabled = "󰂲";
           format-off = "󰂲";
           format-connected = "󰂱";
+          format-no-controller = "󰂲";
           tooltip-format = "Devices connected: {num_connections}";
+          tooltip-format-off = "Bluetooth off";
+          tooltip-format-disabled = "Bluetooth disabled";
+          tooltip-format-no-controller = "No bluetooth controller";
           on-click = "blueman-manager";
         };
 
@@ -381,8 +385,10 @@
         font-size: 18px;
       }
 
-      #bluetooth.disabled {
-        color: @nord3;
+      #bluetooth.disabled,
+      #bluetooth.off,
+      #bluetooth.no-controller {
+        color: @nord4;
       }
 
       #bluetooth.connected {
