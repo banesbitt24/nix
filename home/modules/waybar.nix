@@ -132,6 +132,7 @@
           scroll-step = 5;
           format-icons = {
             default = [
+              "󰝟"
               "󰕿"
               "󰖀"
               "󰕾"
@@ -196,7 +197,7 @@
         };
 
         "custom/expand-icon" = {
-          format = "󰞗";
+          format = "";
           tooltip = false;
         };
 
