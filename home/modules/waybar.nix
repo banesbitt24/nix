@@ -492,6 +492,28 @@
         border-radius: 0;
         padding: 0;
       }
+
+      /* Context menu styling - must come after * rule to override transparent bg */
+      menu {
+        background-color: #3b4252;
+        color: #eceff4;
+        border: 1px solid #4c566a;
+        border-radius: 4px;
+      }
+
+      menu menuitem {
+        padding: 4px 8px;
+      }
+
+      menu menuitem:hover {
+        background-color: #4c566a;
+      }
+
+      menu separator {
+        background-color: #4c566a;
+        min-height: 1px;
+        margin: 4px 0;
+      }
     '';
   };
 }
