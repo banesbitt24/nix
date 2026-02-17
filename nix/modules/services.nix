@@ -14,6 +14,7 @@
 
   # PAM configuration for fingerprint authentication
   security.pam.services.login.fprintAuth = true;
+  security.pam.services.sudo.fprintAuth = true;
   security.pam.services.hyprlock = {
     fprintAuth = true;
     # Ensure hyprlock can unlock without hanging

@@ -410,7 +410,7 @@
       }
 
       #pulseaudio.muted {
-        color: @nord3;
+        color: @nord4;
       }
 
       #network {

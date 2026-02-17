@@ -27,6 +27,7 @@
   boot.initrd = {
     verbose = false;
     systemd.enable = true; # Use systemd in initrd for parallel processing
+    kernelModules = [ "amdgpu" ]; # Early KMS for consistent Plymouth display
   };
 
   boot.plymouth = {

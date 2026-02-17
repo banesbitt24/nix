@@ -29,13 +29,17 @@
       # Battery settings
       START_CHARGE_THRESH_BAT0 = 20;
       STOP_CHARGE_THRESH_BAT0 = 80;
-      
+
       # CPU scaling
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-      
+
       # Enable hibernate on low battery
       RESTORE_DEVICE_STATE_ON_STARTUP = 1;
+
+      # Prevent USB autosuspend from disabling the fingerprint reader
+      # Framework laptop Goodix fingerprint reader
+      USB_DENYLIST = "27c6:609c 27c6:639c";
     };
   };
 }
