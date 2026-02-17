@@ -132,7 +132,7 @@
           scroll-step = 5;
           format-icons = {
             default = [
-              "󰝟"
+              "󰕿"
               "󰕿"
               "󰖀"
               "󰕾"
