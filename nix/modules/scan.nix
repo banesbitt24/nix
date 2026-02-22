@@ -9,7 +9,7 @@
       netDevices = {
         mfc-j895dw = {
           model = "MFC-J895DW";
-          ip = "192.168.1.111";  # Use same IP as printer
+          ip = "192.168.1.107";  # Use same IP as printer
         };
       };
     };
