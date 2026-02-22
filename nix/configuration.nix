@@ -81,6 +81,7 @@
       figlet
       proton-pass
       protonmail-desktop
+      proton-authenticator
       obsidian
       gparted
       spotify
