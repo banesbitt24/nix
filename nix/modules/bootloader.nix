@@ -1,6 +1,9 @@
 { pkgs, ... }:
 
 {
+  # Pin to Linux 6.18 kernel (6.19 has issues)
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
+
   # Use the Grub boot loader
   boot.loader.efi.efiSysMountPoint = "/boot";
   boot.loader.efi.canTouchEfiVariables = true;
